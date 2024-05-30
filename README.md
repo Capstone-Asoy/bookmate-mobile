@@ -20,11 +20,11 @@ To get started with BookMate, follow these steps:
 
 2. Open the project in Android Studio:
    - Open Android Studio.
-   - Click on File -> Open and select the BookMate directory.
+   - Click on File → Open and select the BookMate directory.
 
 
 3. Build and run the project:
-   - Click on Build -> Rebuild Project to build the project.
+   - Click on Build → Rebuild Project to build the project.
    - Once the build is complete, click on Run -> Run 'app' to install and run the app on an emulator or connected device.
 
 ## Commit Message Format
