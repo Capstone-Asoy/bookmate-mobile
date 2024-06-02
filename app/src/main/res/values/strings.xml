@@ -4,4 +4,19 @@
     <string name="title_profile">Profile</string>
     <string name="title_bookmark">Bookmark</string>
     <string name="title_explore">Explore</string>
+
+    <!--    welcome page-->
+    <string name="title_welcome_1">Welcome Title 1!</string>
+    <string name="title_welcome_2">Welcome Title 2!</string>
+    <string name="title_welcome_3">Welcome Title 3!</string>
+    <string name="title_welcome_4">Welcome Title 4!</string>
+    <string name="desc_welcome_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui.</string>
+    <string name="desc_welcome_2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui.</string>
+    <string name="desc_welcome_3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui.</string>
+    <string name="desc_welcome_4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui.</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="get_started">Get Started</string>
+
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui. Vestibulum vel porttitor ante.</string>
 </resources>

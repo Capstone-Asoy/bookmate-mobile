@@ -5,6 +5,17 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
+    <!--    bookmate-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="orange_200">#FFBB2D</color>
+    <color name="orange_300">#FFA74B</color>
+    <color name="orange_400">#F49C3F</color>
+
+    <color name="gunmetal">#2B2C45</color>
+    <color name="pink">#F06292</color>
+    <color name="navi">#2D3D4F</color>
+
+
 </resources>
