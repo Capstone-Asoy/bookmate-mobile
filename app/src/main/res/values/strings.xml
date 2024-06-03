@@ -15,8 +15,22 @@
     <string name="desc_welcome_3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui.</string>
     <string name="desc_welcome_4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui.</string>
 
+    <!--    Sign in & Register-->
     <string name="sign_in">Sign In</string>
     <string name="get_started">Get Started</string>
+    <string name="register">Register</string>
+    <string name="register_msg">Please register to create an account</string>
+    <string name="fullname">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="minimum_character">Minimum 8 characters</string>
+    <string name="lower_case">Contains lower case</string>
+    <string name="upper_case">Contains upper case</string>
+    <string name="ic_password_check_desc">check icon</string>
+    <string name="doesnt_match">Password doesn\'t match</string>
+    <string name="already_have_account">Already have account?</string>
 
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui. Vestibulum vel porttitor ante.</string>
 </resources>

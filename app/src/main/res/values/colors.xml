@@ -12,10 +12,8 @@
     <color name="orange_200">#FFBB2D</color>
     <color name="orange_300">#FFA74B</color>
     <color name="orange_400">#F49C3F</color>
+    <color name="red_600">#DC2626</color>
 
     <color name="gunmetal">#2B2C45</color>
-    <color name="pink">#F06292</color>
-    <color name="navi">#2D3D4F</color>
-
-
+    <color name="gunmetal_400">#28293D</color>
 </resources>
