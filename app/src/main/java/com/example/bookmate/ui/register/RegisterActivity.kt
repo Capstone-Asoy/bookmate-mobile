@@ -1,15 +1,18 @@
 package com.example.bookmate.ui.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookmate.R
 import com.example.bookmate.databinding.ActivityRegisterBinding
+import com.example.bookmate.ui.login.LoginActivity
 import com.example.bookmate.utils.ViewModelFactory
 
 class RegisterActivity : AppCompatActivity() {
@@ -20,6 +23,8 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        enableEdgeToEdge()
 
         viewModel = obtainViewModel(this@RegisterActivity)
         setupAction()
@@ -49,28 +54,40 @@ class RegisterActivity : AppCompatActivity() {
         })
 
         binding.btnSubmit.setOnClickListener {
-            showToast(binding.edName.editText?.text.toString() ?: "null")
+            val name = binding.edName.editText?.text.toString()
+            val email = binding.edEmail.editText?.text.toString()
+            viewModel.register(name, email)
+        }
+
+        binding.btnSignIn.setOnClickListener {
+            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+            finish()
         }
     }
 
     private fun setupObserver() {
-        showMinimumLengthMsg(viewModel.isMinimumLength())
         viewModel.isMinimumLength.observe(this) {
             showMinimumLengthMsg(it)
         }
 
-        showContainLowerMsg(viewModel.isContainLower())
         viewModel.isContainLowerCase.observe(this) {
             showContainLowerMsg(it)
         }
 
-        showContainUpperMsg(viewModel.isContainUpper())
         viewModel.isContainUpperCase.observe(this) {
             showContainUpperMsg(it)
         }
 
         viewModel.isPasswordSame.observe(this) {
             showDoesntMatchMsg(it)
+        }
+        viewModel.isError.observe(this) {
+            if (it) {
+                showToast(viewModel.getErrorMessage())
+            } else {
+                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                finish()
+            }
         }
     }
 

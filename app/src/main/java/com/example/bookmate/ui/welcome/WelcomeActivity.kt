@@ -3,6 +3,7 @@ package com.example.bookmate.ui.welcome
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookmate.databinding.ActivityWelcomeBinding
 import com.example.bookmate.ui.register.RegisterActivity
@@ -16,6 +17,7 @@ class WelcomeActivity : AppCompatActivity() {
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        enableEdgeToEdge()
         setupAction()
     }
 

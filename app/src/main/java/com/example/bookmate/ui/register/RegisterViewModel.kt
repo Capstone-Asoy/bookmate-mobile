@@ -1,5 +1,6 @@
 package com.example.bookmate.ui.register
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,13 +10,19 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isMinimumLength = MutableLiveData<Boolean>()
+    private val _isMinimumLength = MutableLiveData<Boolean>().apply {
+        value = false
+    }
     val isMinimumLength: LiveData<Boolean> = _isMinimumLength
 
-    private val _isContainLowerCase = MutableLiveData<Boolean>()
+    private val _isContainLowerCase = MutableLiveData<Boolean>().apply {
+        value = false
+    }
     val isContainLowerCase: LiveData<Boolean> = _isContainLowerCase
 
-    private val _isContainUpperCase = MutableLiveData<Boolean>()
+    private val _isContainUpperCase = MutableLiveData<Boolean>().apply {
+        value = false
+    }
     val isContainUpperCase: LiveData<Boolean> = _isContainUpperCase
 
     private val _isPasswordSame = MutableLiveData<Boolean>()
@@ -23,6 +30,43 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _password = MutableLiveData<String>()
     private val _passwordConfirmation = MutableLiveData<String>()
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
+
+    private val _isError = MutableLiveData<Boolean>()
+    val isError: LiveData<Boolean> = _isError
+
+
+    fun register(name: String, email: String) {
+        _isLoading.value = true
+
+        if (validateValues(name, email)) {
+            _errorMessage.value = ""
+            _isError.value = false
+        } else {
+            _isError.value = true
+        }
+    }
+
+    private fun validateValues(name: String, email: String): Boolean {
+        if (name.isEmpty()) {
+            _errorMessage.value = "Name is required"
+        } else if (email.isEmpty()) {
+            _errorMessage.value = "Email is required"
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            _errorMessage.value = "Invalid email"
+        } else if (_isMinimumLength.value != true
+            || _isContainLowerCase.value != true
+            || _isContainUpperCase.value != true
+            || _isPasswordSame.value != true
+        ) {
+            _errorMessage.value = "The password does not meet the criteria"
+        } else {
+            return true
+        }
+        return false
+    }
 
     fun checkPassword(str: CharSequence) {
         _isMinimumLength.value = str.length >= 8
@@ -50,20 +94,11 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
         _isPasswordSame.value = _password.value.equals(_passwordConfirmation.value)
     }
 
-    fun isMinimumLength(): Boolean {
-        return _isMinimumLength.value ?: false
-    }
-
-    fun isContainUpper(): Boolean {
-        return _isContainUpperCase.value ?: false
-    }
-
-    fun isContainLower(): Boolean {
-        return _isContainLowerCase.value ?: false
+    fun getErrorMessage(): String {
+        return _errorMessage.value ?: "Unknown error"
     }
 
     companion object {
         private const val TAG = "RegisterViewModel"
     }
-
 }

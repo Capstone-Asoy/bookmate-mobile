@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.bookmate.data.UserRepository
 import com.example.bookmate.di.Injection
 import com.example.bookmate.ui.home.HomeViewModel
+import com.example.bookmate.ui.login.LoginViewModel
 import com.example.bookmate.ui.main.MainViewModel
 import com.example.bookmate.ui.register.RegisterViewModel
 
@@ -23,6 +24,9 @@ class ViewModelFactory(private val repository: UserRepository) :
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 RegisterViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                LoginViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

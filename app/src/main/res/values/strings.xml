@@ -17,6 +17,8 @@
 
     <!--    Sign in & Register-->
     <string name="sign_in">Sign In</string>
+    <string name="sign_in_title">Welcome back,</string>
+    <string name="sign_in_msg">Please sign in to continue</string>
     <string name="get_started">Get Started</string>
     <string name="register">Register</string>
     <string name="register_msg">Please register to create an account</string>
@@ -31,6 +33,7 @@
     <string name="ic_password_check_desc">check icon</string>
     <string name="doesnt_match">Password doesn\'t match</string>
     <string name="already_have_account">Already have account?</string>
+    <string name="doesnt_have_account">Doesn\'t have account?</string>
 
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui. Vestibulum vel porttitor ante.</string>
 </resources>
