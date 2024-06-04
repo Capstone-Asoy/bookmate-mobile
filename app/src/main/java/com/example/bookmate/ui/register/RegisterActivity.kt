@@ -66,6 +66,9 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
+        viewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
         viewModel.isMinimumLength.observe(this) {
             showMinimumLengthMsg(it)
         }
@@ -86,6 +89,7 @@ class RegisterActivity : AppCompatActivity() {
                 showToast(viewModel.getErrorMessage())
             } else {
                 startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                showToast(getString(R.string.register_success))
                 finish()
             }
         }
@@ -120,6 +124,16 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun showToast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+            binding.btnSubmit.isEnabled = false
+        } else {
+            binding.progressBar.visibility = View.GONE
+            binding.btnSubmit.isEnabled = true
+        }
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): RegisterViewModel {

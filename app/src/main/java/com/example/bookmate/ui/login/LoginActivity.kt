@@ -2,6 +2,8 @@ package com.example.bookmate.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -30,10 +32,36 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
             finish()
         }
+        binding.btnSubmit.setOnClickListener {
+            val email = binding.edEmail.editText?.text.toString()
+            val password = binding.edPassword.editText?.text.toString()
+            viewModel.login(email, password)
+        }
     }
 
     private fun setupObserver() {
+        viewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+        viewModel.isError.observe(this) {
+            if (it) {
+                showToast(viewModel.getErrorMessage())
+            }
+        }
+    }
 
+    private fun showToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+            binding.btnSubmit.isEnabled = false
+        } else {
+            binding.progressBar.visibility = View.GONE
+            binding.btnSubmit.isEnabled = true
+        }
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): LoginViewModel {

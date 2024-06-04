@@ -41,12 +41,15 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
     fun register(name: String, email: String) {
         _isLoading.value = true
 
-        if (validateValues(name, email)) {
-            _errorMessage.value = ""
-            _isError.value = false
-        } else {
-            _isError.value = true
-        }
+        android.os.Handler().postDelayed({
+            if (validateValues(name, email)) {
+                _errorMessage.value = ""
+                _isError.value = false
+            } else {
+                _isError.value = true
+            }
+            _isLoading.value = false
+        }, 2000)
     }
 
     private fun validateValues(name: String, email: String): Boolean {
