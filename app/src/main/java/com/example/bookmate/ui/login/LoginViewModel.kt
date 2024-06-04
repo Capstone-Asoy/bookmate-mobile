@@ -4,7 +4,11 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.bookmate.data.UserRepository
+import com.example.bookmate.data.pref.UserModel
+import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
@@ -22,10 +26,14 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
             if (validateInput(email, password)) {
                 _errorMessage.value = ""
                 _isError.value = false
+                _isLoading.value = false
+
+                saveSession(getUserDummy())
+
             } else {
                 _isError.value = true
+                _isLoading.value = false
             }
-            _isLoading.value = false
         }, 2000)
     }
 
@@ -42,5 +50,19 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun getErrorMessage(): String {
         return _errorMessage.value ?: "Unknown error"
+    }
+
+    private fun getUserDummy(): UserModel {
+        return UserModel("Fachry", "fachry@gmail.com", "token", true)
+    }
+
+    private fun saveSession(user: UserModel) {
+        viewModelScope.launch {
+            repository.saveSession(user)
+        }
+    }
+
+    fun getSession(): LiveData<UserModel> {
+        return repository.getSession().asLiveData()
     }
 }

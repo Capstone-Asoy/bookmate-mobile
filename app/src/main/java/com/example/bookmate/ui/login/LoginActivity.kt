@@ -2,12 +2,15 @@ package com.example.bookmate.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.bookmate.R
 import com.example.bookmate.databinding.ActivityLoginBinding
+import com.example.bookmate.ui.main.MainActivity
 import com.example.bookmate.ui.register.RegisterActivity
 import com.example.bookmate.utils.ViewModelFactory
 
@@ -46,6 +49,13 @@ class LoginActivity : AppCompatActivity() {
         viewModel.isError.observe(this) {
             if (it) {
                 showToast(viewModel.getErrorMessage())
+            } else {
+                showToast(getString(R.string.login_success))
+
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+                finish()
             }
         }
     }

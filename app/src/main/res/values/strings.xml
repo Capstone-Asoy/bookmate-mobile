@@ -35,6 +35,7 @@
     <string name="already_have_account">Already have account?</string>
     <string name="doesnt_have_account">Doesn\'t have account?</string>
     <string name="register_success">Registration successful!</string>
+    <string name="login_success">Enjoy your reads!</string>
 
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui. Vestibulum vel porttitor ante.</string>
 </resources>
