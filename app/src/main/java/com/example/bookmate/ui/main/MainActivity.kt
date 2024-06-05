@@ -16,6 +16,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.bookmate.R
 import com.example.bookmate.databinding.ActivityMainBinding
+import com.example.bookmate.ui.preference.PreferenceActivity
 import com.example.bookmate.ui.welcome.WelcomeActivity
 import com.example.bookmate.utils.ViewModelFactory
 
@@ -39,6 +40,9 @@ class MainActivity : AppCompatActivity() {
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 startActivity(Intent(this, WelcomeActivity::class.java))
+                finish()
+            } else if (user.isNewUser) {
+                startActivity(Intent(this, PreferenceActivity::class.java))
                 finish()
             }
         }

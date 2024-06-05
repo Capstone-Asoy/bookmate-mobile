@@ -8,6 +8,7 @@ import com.example.bookmate.di.Injection
 import com.example.bookmate.ui.home.HomeViewModel
 import com.example.bookmate.ui.login.LoginViewModel
 import com.example.bookmate.ui.main.MainViewModel
+import com.example.bookmate.ui.preference.PreferenceViewModel
 import com.example.bookmate.ui.register.RegisterViewModel
 
 class ViewModelFactory(private val repository: UserRepository) :
@@ -27,6 +28,9 @@ class ViewModelFactory(private val repository: UserRepository) :
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(PreferenceViewModel::class.java) -> {
+                PreferenceViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

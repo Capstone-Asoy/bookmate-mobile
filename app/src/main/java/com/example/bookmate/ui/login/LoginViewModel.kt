@@ -53,7 +53,7 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     private fun getUserDummy(): UserModel {
-        return UserModel("Fachry", "fachry@gmail.com", "token", true)
+        return UserModel("Fachry", "fachry@gmail.com", "token", isLogin = true, isNewUser = true)
     }
 
     private fun saveSession(user: UserModel) {
