@@ -1,12 +1,15 @@
 package com.example.bookmate.ui.preference
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookmate.databinding.ActivityPreferenceBinding
+import com.example.bookmate.ui.main.MainActivity
 import com.example.bookmate.utils.ViewModelFactory
 
 class PreferenceActivity : AppCompatActivity() {
@@ -27,7 +30,7 @@ class PreferenceActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.btnNext.setOnClickListener {
-
+            viewModel.submitGenres()
         }
     }
 
@@ -48,6 +51,14 @@ class PreferenceActivity : AppCompatActivity() {
                 }
             }
         }
+        viewModel.isError.observe(this) {
+            if (it) {
+                showToast(viewModel.getErrorMessage())
+            } else {
+                startActivity(Intent(this@PreferenceActivity, MainActivity::class.java))
+                finish()
+            }
+        }
     }
 
     private fun showGenreData(listGenre: List<String>) {
@@ -63,6 +74,10 @@ class PreferenceActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): PreferenceViewModel {

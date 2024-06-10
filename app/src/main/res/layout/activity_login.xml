@@ -107,7 +107,8 @@
             android:padding="0dp"
             android:text="@string/register"
             android:textAllCaps="false"
-            android:textColor="@color/gunmetal_400" />
+            android:textColor="@color/gunmetal_400"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
     <Button

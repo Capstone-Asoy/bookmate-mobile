@@ -10,6 +10,7 @@ import com.example.bookmate.ui.home.HomeViewModel
 import com.example.bookmate.ui.login.LoginViewModel
 import com.example.bookmate.ui.main.MainViewModel
 import com.example.bookmate.ui.preference.PreferenceViewModel
+import com.example.bookmate.ui.profile.ProfileViewModel
 import com.example.bookmate.ui.register.RegisterViewModel
 
 class ViewModelFactory(private val repository: UserRepository) :
@@ -20,9 +21,6 @@ class ViewModelFactory(private val repository: UserRepository) :
         return when {
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(repository) as T
-            }
-            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel() as T
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 RegisterViewModel(repository) as T
@@ -35,6 +33,12 @@ class ViewModelFactory(private val repository: UserRepository) :
             }
             modelClass.isAssignableFrom(BookViewModel::class.java) -> {
                 BookViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel() as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

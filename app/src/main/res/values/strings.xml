@@ -47,7 +47,7 @@
 
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui. Vestibulum vel porttitor ante.</string>
 
-    <!-- Book Detail -->
+    <!--    Book Detail-->
     <string name="book_synopsis">Synopsis</string>
     <string name="dummy_synopsis">Elspeth needs a monster. The monster might be her. Elspeth Spindle needs more than luck to stay safe in the eerie, mist-locked kingdom of Blunder—she needs a monster. She calls him the Nightmare, an ancient, mercurial spirit trapped in her head. He protects her. He keeps her secrets. But nothing comes for free, especially magic. When Elspeth meets a mysterious highwayman on the forest road, her life takes a drastic turn. Thrust into a world of shadow and deception, she joins a dangerous quest to cure Blunder from the dark magic infecting it. And the highwayman? He just so happens to be the King’s nephew, Captain of the most dangerous men in Blunder…and guilty of high treason. Together they must gather twelve Providence Cards—the keys to the cure. But as the stakes heighten and their undeniable attraction intensifies, Elspeth is forced to face her darkest secret yet: the Nightmare is slowly taking over her mind. And she might not be able to stop him.</string>
     <string name="give_review">Review</string>
@@ -55,4 +55,13 @@
     <string name="review">Review</string>
     <string name="judulbuku">Judul Buku</string>
     <string name="penulisbuku">Penulis Buku</string>
+    <string name="log_out">Log Out</string>
+    <string name="reading_list">Reading List</string>
+    <string name="number">99</string>
+    <string name="book_reviewed">Book Reviewed</string>
+    <string name="recent_books">Recent Books</string>
+    <string name="start_explore">Start explore books!</string>
+
+    <!--    Profile-->
+
 </resources>

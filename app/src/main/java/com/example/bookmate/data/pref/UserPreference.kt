@@ -23,6 +23,12 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    suspend fun setNewUserKey() {
+        dataStore.edit { preferencees ->
+            preferencees[IS_NEW_USER_KEY] = false
+        }
+    }
+
     fun getSession(): Flow<UserModel> {
         return dataStore.data.map { preferences ->
             UserModel(
