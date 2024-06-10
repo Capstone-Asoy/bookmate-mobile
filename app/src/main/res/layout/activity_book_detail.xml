@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="JudulBuku"
+                    android:text="@string/judulbuku"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="PenulisBuku"
+                    android:text="@string/penulisbuku"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,6 @@
                     android:layout_height="205dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src=""
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +71,7 @@
                     android:layout_height="400dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:src=""
+                    tools:src="@tools:sample/avatars"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -95,14 +94,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="395dp"
                     android:padding="0dp"
-                    android:text="Review"
+                    android:text="@string/review"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.239"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="DuplicateIds" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
 
@@ -112,9 +110,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Synopsis"
+            android:text="@string/synopsis"
             android:textSize="18sp"
             android:textStyle="bold" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
