@@ -33,9 +33,11 @@ class GenreAdapter: ListAdapter<String, GenreAdapter.ViewHolder>(DIFF_CALLBACK) 
             }
         }
 
-        fun setCheckboxEnabled(enabled: Boolean) {
-            if (binding.checkbox.isChecked) {
-                binding.checkbox.isEnabled = enabled
+        fun setCheckboxEnabled(lessThan5: Boolean) {
+            if (!lessThan5) {
+                binding.checkbox.isEnabled = binding.checkbox.isChecked
+            } else {
+                binding.checkbox.isEnabled = true
             }
         }
     }
