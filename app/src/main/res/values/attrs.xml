@@ -2,4 +2,9 @@
 <resources>
     <!-- Declare custom attribute for bottom navigation background color -->
     <attr name="bottomNavBackgroundColor" format="color"/>
+
+    <declare-styleable name="CustomCheckboxTextView">
+        <attr name="text" format="string" />
+        <attr name="isChecked" format="boolean" />
+    </declare-styleable>
 </resources>
