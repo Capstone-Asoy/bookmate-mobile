@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BookMate"
         tools:targetApi="31">
         <activity
+            android:name=".ui.bookdetail.BookDetail"
+            android:exported="false" />
+        <activity
             android:name=".ui.preference.PreferenceActivity"
             android:exported="false" />
         <activity
