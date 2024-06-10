@@ -4,7 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.bookmate.data.UserRepository
+import kotlinx.coroutines.launch
 
 class PreferenceViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
@@ -15,6 +17,12 @@ class PreferenceViewModel(private val repository: UserRepository) : ViewModel() 
 
     private val _selectedGenres = MutableLiveData<MutableList<String>>(mutableListOf())
     val selectedGenres: LiveData<MutableList<String>> = _selectedGenres
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
+
+    private val _isError = MutableLiveData<Boolean>()
+    val isError: LiveData<Boolean> = _isError
 
     fun getGenres() {
         _isLoading.value = true
@@ -70,12 +78,22 @@ class PreferenceViewModel(private val repository: UserRepository) : ViewModel() 
         Log.d("TOGGLE", _selectedGenres.value.toString())
     }
 
-    fun isGenreSelected(genre: String): Boolean {
-        return _selectedGenres.value?.contains(genre) == true
+    fun submitGenres() {
+        val selectedGenre = _selectedGenres.value
+        if (selectedGenre != null && selectedGenre.size == 5) {
+            viewModelScope.launch {
+                repository.setNewUserKey()
+            }
+            _isError.value = false
+        } else {
+            Log.e(TAG, "Selected genres is less than 5")
+            _errorMessage.value = "Choose 5 genres"
+            _isError.value = true
+        }
     }
 
-    fun isMaxSelected(): Boolean {
-        return _selectedGenres.value?.size == 5
+    fun getErrorMessage(): String {
+        return _errorMessage.value ?: "Unknown error"
     }
 
     companion object {

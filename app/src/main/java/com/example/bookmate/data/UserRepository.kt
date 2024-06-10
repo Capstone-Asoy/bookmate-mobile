@@ -14,6 +14,10 @@ class UserRepository private constructor(
         userPreference.saveSession(user)
     }
 
+    suspend fun setNewUserKey() {
+        userPreference.setNewUserKey()
+    }
+
     fun getSession(): Flow<UserModel> {
         return userPreference.getSession()
     }
