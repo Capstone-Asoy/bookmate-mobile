@@ -1,17 +1,9 @@
 package com.example.bookmate.ui.bookdetail
 
 import android.annotation.SuppressLint
-import android.graphics.Outline
 import android.os.Bundle
-import android.view.View
-import android.view.ViewOutlineProvider
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.bookmate.R
 import com.example.bookmate.databinding.ActivityMainBinding
 import com.example.bookmate.ui.main.MainViewModel

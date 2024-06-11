@@ -13,7 +13,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "BASE_URL", "\"https://api.example.com\"")
+        buildConfigField("String", "BASE_URL", "\"https://capstone-424620.et.r.appspot.com\"")
+        buildConfigField("String", "IMAGE_URL", "\"https://storage.googleapis.com/profileuser/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,7 +27,8 @@ android {
             )
         }
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://api.debug.example.com\"")
+            buildConfigField("String", "BASE_URL", "\"https://capstone-424620.et.r.appspot.com\"")
+            buildConfigField("String", "IMAGE_URL", "\"https://storage.googleapis.com/profileuser/\"")
         }
     }
     compileOptions {

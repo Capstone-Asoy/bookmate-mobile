@@ -53,16 +53,12 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     private fun getUserDummy(): UserModel {
-        return UserModel("Fachry", "fachry@gmail.com", "token", isLogin = true, isNewUser = true)
+        return UserModel("Fachry", "fachry@gmail.com", "token", "", isLogin = true, isNewUser = true)
     }
 
     private fun saveSession(user: UserModel) {
         viewModelScope.launch {
             repository.saveSession(user)
         }
-    }
-
-    fun getSession(): LiveData<UserModel> {
-        return repository.getSession().asLiveData()
     }
 }

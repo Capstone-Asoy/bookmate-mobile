@@ -31,20 +31,44 @@
         app:layout_constraintStart_toStartOf="@id/tv_register"
         app:layout_constraintTop_toBottomOf="@id/tv_register" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_profile"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/avatar_default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_register_msg" />
+
+    <Button
+        android:id="@+id/btn_choose_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/orange_200"
+        android:text="@string/choose_image"
+        android:textAllCaps="false"
+        android:textColor="@color/gray_50"
+        app:layout_constraintBottom_toBottomOf="@id/img_profile"
+        app:layout_constraintStart_toEndOf="@id/img_profile"
+        app:layout_constraintTop_toTopOf="@id/img_profile" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ed_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/fullname"
         app:boxBackgroundColor="@color/white"
         app:hintTextColor="@color/gunmetal_400"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_register_msg">
+        app:layout_constraintTop_toBottomOf="@id/img_profile">
 
         <EditText
             android:layout_width="match_parent"
@@ -297,7 +321,8 @@
             android:padding="0dp"
             android:text="@string/sign_in"
             android:textAllCaps="false"
-            android:textColor="@color/gunmetal_400" />
+            android:textColor="@color/gunmetal_400"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
     <Button
@@ -319,14 +344,14 @@
 
     <ProgressBar
         android:id="@+id/progress_bar"
-        android:indeterminateTint="@color/white"
         android:layout_width="18dp"
         android:layout_height="18dp"
+        android:indeterminateTint="@color/white"
         android:visibility="gone"
-        tools:visibility="visible"
-        app:layout_constraintStart_toStartOf="@id/btn_submit"
+        app:layout_constraintBottom_toBottomOf="@id/btn_submit"
         app:layout_constraintEnd_toEndOf="@id/btn_submit"
+        app:layout_constraintStart_toStartOf="@id/btn_submit"
         app:layout_constraintTop_toTopOf="@id/btn_submit"
-        app:layout_constraintBottom_toBottomOf="@id/btn_submit"/>
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
