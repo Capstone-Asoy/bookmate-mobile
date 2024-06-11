@@ -4,8 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.bookmate.data.UserRepository
+import com.example.bookmate.data.pref.UserModel
 import kotlinx.coroutines.launch
 
 class PreferenceViewModel(private val repository: UserRepository) : ViewModel() {
@@ -94,6 +96,10 @@ class PreferenceViewModel(private val repository: UserRepository) : ViewModel() 
 
     fun getErrorMessage(): String {
         return _errorMessage.value ?: "Unknown error"
+    }
+
+    fun getSession(): LiveData<UserModel> {
+        return repository.getSession().asLiveData()
     }
 
     companion object {

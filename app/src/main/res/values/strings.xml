@@ -25,6 +25,8 @@
     <string name="sign_in_msg">Please sign in to continue</string>
     <string name="get_started">Get Started</string>
     <string name="register">Register</string>
+    <string name="choose_image">Choose Image</string>
+    <string name="no_image">No Image</string>
     <string name="register_msg">Please register to create an account</string>
     <string name="fullname">Full Name</string>
     <string name="email">Email</string>
