@@ -40,8 +40,16 @@ class PreferenceActivity : AppCompatActivity() {
         viewModel.isLoading.observe(this) {
             showLoading(it)
         }
+        viewModel.isLoadingSubmit.observe(this) {
+            showLoadingSubmit(it)
+        }
         viewModel.listGenre.observe(this) {
             showGenreData(it)
+        }
+        viewModel.isErrorGetData.observe(this) {
+            if (it) {
+                showToast(viewModel.getErrorMessage())
+            }
         }
         viewModel.selectedGenres.observe(this) {
             binding.rvGenre.children.forEach { child ->
@@ -74,6 +82,16 @@ class PreferenceActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showLoadingSubmit(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBarSubmit.visibility = View.VISIBLE
+            binding.btnNext.isEnabled = false
+        } else {
+            binding.progressBarSubmit.visibility = View.GONE
+            binding.btnNext.isEnabled = true
+        }
     }
 
     private fun showToast(msg: String) {

@@ -1,8 +1,10 @@
 package com.example.bookmate.data.retrofit
 
 import com.example.bookmate.data.request.LoginRequest
+import com.example.bookmate.data.request.PreferenceRequest
 import com.example.bookmate.data.response.GenreResponse
 import com.example.bookmate.data.response.LoginResponse
+import com.example.bookmate.data.response.PreferenceResponse
 import com.example.bookmate.data.response.ProfileResponse
 import com.example.bookmate.data.response.RegisterResponse
 import okhttp3.MultipartBody
@@ -32,4 +34,7 @@ interface ApiService {
 
     @GET("genres")
     fun getGenres(): Call<GenreResponse>
+
+    @POST("preference")
+    fun submitPreferences(@Body selectedGenres: PreferenceRequest): Call<PreferenceResponse>
 }
