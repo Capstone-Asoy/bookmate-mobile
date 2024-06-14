@@ -22,7 +22,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginTop="32dp"
-            android:src="@drawable/default_avatar" />
+            android:src="@drawable/avatar_default" />
     </LinearLayout>
 
     <TextView

@@ -99,6 +99,8 @@ class RegisterActivity : AppCompatActivity() {
             if (it) {
                 showToast(viewModel.getErrorMessage())
             } else {
+                showToast(getString(R.string.login_success))
+
                 startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
                 showToast(getString(R.string.register_success))
                 finish()

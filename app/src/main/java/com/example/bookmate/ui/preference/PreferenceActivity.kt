@@ -51,7 +51,7 @@ class PreferenceActivity : AppCompatActivity() {
                 }
             }
         }
-        viewModel.isError.observe(this) {
+        viewModel.isErrorSubmitData.observe(this) {
             if (it) {
                 showToast(viewModel.getErrorMessage())
             } else {
