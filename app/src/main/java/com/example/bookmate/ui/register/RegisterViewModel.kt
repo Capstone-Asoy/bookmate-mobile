@@ -109,7 +109,6 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
                         }
                     } else {
                         val errorMsg = getErrorMessageFromJson(response.errorBody()?.string())
-                        Log.e("DUNGGG", response.errorBody()?.string() ?: "")
                         _errorMessage.value = errorMsg
                         _isError.value = true
                         Log.e(TAG, errorMsg)
@@ -119,7 +118,7 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                     _isLoading.value = false
                     _isError.value = true
-                    _errorMessage.value = t.message ?: "Register gagal"
+                    _errorMessage.value = t.message ?: "Register failed"
                     Log.e(TAG, "onFailure 2: ${t.message}")
                 }
             })

@@ -38,6 +38,11 @@ class UserRepository private constructor(
         apiService = newApiService
     }
 
+    suspend fun updateProfileData(name: String, photoUrl: String) {
+        userPreference.setName(name)
+        userPreference.setPhotoImage(photoUrl)
+    }
+
     companion object {
         @Volatile
         private var instance: UserRepository? = null

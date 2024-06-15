@@ -1,40 +1,80 @@
 package com.example.bookmate.ui.login
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.bookmate.data.UserRepository
 import com.example.bookmate.data.pref.UserModel
+import com.example.bookmate.data.request.LoginRequest
+import com.example.bookmate.data.response.LoginResponse
+import com.example.bookmate.utils.getErrorMessageFromJson
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
 
     private val _isError = MutableLiveData<Boolean>()
     val isError: LiveData<Boolean> = _isError
 
     fun login(email: String, password: String) {
         _isLoading.value = true
-        android.os.Handler().postDelayed({
-            if (validateInput(email, password)) {
-                _errorMessage.value = ""
-                _isError.value = false
-                _isLoading.value = false
 
-                saveSession(getUserDummy())
+        if (validateInput(email, password)) {
+            val client = repository.getApiService().login(LoginRequest(email, password))
 
-            } else {
-                _isError.value = true
-                _isLoading.value = false
-            }
-        }, 2000)
+            client.enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(
+                    call: Call<LoginResponse>, response: Response<LoginResponse>
+                ) {
+                    _isLoading.value = false
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        if (responseBody != null) {
+                            val user = UserModel(
+                                "",
+                                email,
+                                responseBody.token,
+                                "",
+                                isLogin = true,
+                                isNewUser = responseBody.isNewAcc
+                            )
+                            saveSession(user)
+
+                            _errorMessage.value = ""
+                            _isError.value = false
+                        } else {
+                            _errorMessage.value = "Response null"
+                            _isError.value = true
+                            Log.e(TAG, "Response null")
+                        }
+                    } else {
+                        val errorMsg = getErrorMessageFromJson(response.errorBody()?.string())
+                        _errorMessage.value = errorMsg
+                        _isError.value = true
+                        Log.e(TAG, errorMsg)
+                    }
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    _isLoading.value = false
+                    _errorMessage.value = "Unavailable service 😔"
+                    _isError.value = true
+                    Log.e(TAG, "onFailure 2: ${t.message}")
+                }
+            })
+        } else {
+            _isLoading.value = false
+            _isError.value = true
+        }
     }
 
     private fun validateInput(email: String, password: String): Boolean {
@@ -49,16 +89,16 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     fun getErrorMessage(): String {
-        return _errorMessage.value ?: "Unknown error"
-    }
-
-    private fun getUserDummy(): UserModel {
-        return UserModel("Fachry", "fachry@gmail.com", "token", "", isLogin = true, isNewUser = true)
+        return _errorMessage.value ?: "Unavailable service 😔"
     }
 
     private fun saveSession(user: UserModel) {
         viewModelScope.launch {
             repository.saveSession(user)
         }
+    }
+
+    companion object {
+        private const val TAG = "LoginViewModel"
     }
 }
