@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.bookmate.R
 import com.example.bookmate.data.response.BookItem
 import com.example.bookmate.databinding.ItemBookBinding
 
@@ -29,7 +30,10 @@ class BookAdapter : ListAdapter<BookItem, BookAdapter.ViewHolder>(DIFF_CALLBACK)
     inner class ViewHolder(private val binding: ItemBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(book: BookItem) {
-            Glide.with(binding.root.context).load(book.image).into(binding.imgCover)
+            Glide.with(binding.root.context)
+                .load(book.image)
+                .placeholder(R.drawable.default_cover)
+                .into(binding.imgCover)
 
             binding.root.setOnClickListener {
                 onItemClickCallback.onItemClicked(book)

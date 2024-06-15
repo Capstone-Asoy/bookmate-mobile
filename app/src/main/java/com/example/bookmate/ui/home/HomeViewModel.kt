@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.bookmate.data.UserRepository
 import com.example.bookmate.data.response.BookItem
 import com.example.bookmate.data.response.RecommendationResponse
+import com.example.bookmate.data.response.SearchResponse
 import com.example.bookmate.utils.getErrorMessageFromJson
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,13 +17,13 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isError = MutableLiveData<Boolean>()
-    val isError: LiveData<Boolean> = _isError
+    private val _isErrorGetData = MutableLiveData<Boolean>()
+    val isErrorGetData: LiveData<Boolean> = _isErrorGetData
 
-    private val _isAddSpacing = MutableLiveData<Boolean>().apply {
-        value = false
+    private val _pageTitle = MutableLiveData<String>().apply {
+        value = "For you"
     }
-    val isAddSpacing: LiveData<Boolean> = _isAddSpacing
+    val pageTitle: LiveData<String> = _pageTitle
 
     private val _errorMessage = MutableLiveData<String>()
 
@@ -44,17 +45,17 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
                         _listBuku.value = responseBody.data
 
                         _errorMessage.value = ""
-                        _isError.value = false
-                        _isAddSpacing.value = true
+                        _isErrorGetData.value = false
+                        _pageTitle.value = "For you"
                     } else {
                         _errorMessage.value = "Failed to get data. Try again later"
-                        _isError.value = true
+                        _isErrorGetData.value = true
                         Log.e(TAG, "Response null")
                     }
                 } else {
                     val errorMsg = getErrorMessageFromJson(response.errorBody()?.string())
                     _errorMessage.value = errorMsg
-                    _isError.value = true
+                    _isErrorGetData.value = true
                     Log.e(TAG, errorMsg)
                 }
             }
@@ -62,7 +63,46 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
             override fun onFailure(call: Call<RecommendationResponse>, t: Throwable) {
                 _isLoading.value = false
                 _errorMessage.value = "Unavailable service 😔"
-                _isError.value = true
+                _isErrorGetData.value = true
+                Log.e(TAG, "onFailure 2: ${t.message}")
+            }
+        })
+    }
+
+    fun search(keyword: String) {
+        _isLoading.value = true
+
+        val client = repository.getApiService().search(keyword)
+        client.enqueue(object : Callback<SearchResponse> {
+            override fun onResponse(
+                call: Call<SearchResponse>, response: Response<SearchResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        _listBuku.value = responseBody.results
+
+                        _pageTitle.value = "Search result '${keyword}'"
+                        _errorMessage.value = ""
+                        _isErrorGetData.value = false
+                    } else {
+                        _errorMessage.value = "Failed to get data. Try again later"
+                        _isErrorGetData.value = true
+                        Log.e(TAG, "Response null")
+                    }
+                } else {
+                    val errorMsg = getErrorMessageFromJson(response.errorBody()?.string())
+                    _errorMessage.value = errorMsg
+                    _isErrorGetData.value = true
+                    Log.e(TAG, errorMsg)
+                }
+            }
+
+            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+                _isLoading.value = false
+                _errorMessage.value = "Unavailable service 😔"
+                _isErrorGetData.value = true
                 Log.e(TAG, "onFailure 2: ${t.message}")
             }
         })
@@ -70,10 +110,6 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun getErrorMessage(): String {
         return _errorMessage.value ?: "Unknown error"
-    }
-
-    fun isAddSpacing(): Boolean {
-        return _isAddSpacing.value ?: true
     }
 
     companion object {
