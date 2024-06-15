@@ -6,6 +6,7 @@ import com.example.bookmate.data.response.GenreResponse
 import com.example.bookmate.data.response.LoginResponse
 import com.example.bookmate.data.response.PreferenceResponse
 import com.example.bookmate.data.response.ProfileResponse
+import com.example.bookmate.data.response.RecommendationResponse
 import com.example.bookmate.data.response.RegisterResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -37,4 +38,8 @@ interface ApiService {
 
     @POST("preference")
     fun submitPreferences(@Body selectedGenres: PreferenceRequest): Call<PreferenceResponse>
+
+    @GET("getRekomendasi")
+    fun getRekomendasi(): Call<RecommendationResponse>
+
 }
