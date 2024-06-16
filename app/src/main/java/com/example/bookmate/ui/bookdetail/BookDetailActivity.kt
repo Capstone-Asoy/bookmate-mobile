@@ -54,6 +54,8 @@ class BookDetailActivity : AppCompatActivity() {
     private fun showData(book: BookDetailResponse) {
         binding.tvTitle.text = book.title
         binding.tvAuthor.text = book.author
+        binding.tvRating.text = book.avgRating
+        binding.ratingStar.setRatingValue(book.avgRating.toDouble().toInt())
         binding.information.tvSynopsis.text = book.synopsis
         binding.information.tvPublisherValue.text = book.publisher
         binding.information.tvPublishedYearValue.text = book.year.toString()
@@ -68,6 +70,19 @@ class BookDetailActivity : AppCompatActivity() {
             .load(book.coverImage)
             .placeholder(R.drawable.default_cover)
             .into(binding.imgCover)
+
+        if (book.reviews.isNotEmpty()) {
+            binding.information.tvNoReview.visibility = View.GONE
+            binding.information.rvReview.visibility = View.VISIBLE
+
+            val adapter = ReviewAdapter()
+            adapter.submitList(book.reviews)
+            binding.information.rvReview.adapter = adapter
+        } else {
+            binding.information.tvNoReview.visibility = View.VISIBLE
+            binding.information.rvReview.visibility = View.GONE
+        }
+
     }
 
     private fun showLoading(isLoading: Boolean) {

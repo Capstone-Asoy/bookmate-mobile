@@ -70,6 +70,10 @@
     <string name="no_review">No reviews available</string>
     <string name="cover">Book Cover</string>
     <string name="lorem_1">lorem</string>
+    <string name="reviewer">Reviewer</string>
+    <string name="rating">Rating</string>
+    <string name="review_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet.</string>
+    <string name="review_date">dd MM yyyy</string>
 
     <!--    Profile-->
     <string name="reading_list">Reading List</string>
