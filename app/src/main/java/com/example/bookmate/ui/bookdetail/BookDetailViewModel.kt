@@ -23,8 +23,11 @@ class BookDetailViewModel(private val repository: UserRepository) : ViewModel() 
     private val _bookDetail = MutableLiveData<BookDetailResponse>()
     val bookDetail: LiveData<BookDetailResponse> = _bookDetail
 
+    private val _bookId = MutableLiveData<Int>()
+
     fun getBookDetail(id: Int) {
         _isLoading.value = true
+        _bookId.value = id
 
         val client = repository.getApiService().getDetailBook(id)
         client.enqueue(object : Callback<BookDetailResponse> {

@@ -3,6 +3,7 @@ package com.example.bookmate.data.retrofit
 import com.example.bookmate.data.request.LoginRequest
 import com.example.bookmate.data.request.PreferenceRequest
 import com.example.bookmate.data.response.BookDetailResponse
+import com.example.bookmate.data.response.BookmarkResponse
 import com.example.bookmate.data.response.GenreResponse
 import com.example.bookmate.data.response.LoginResponse
 import com.example.bookmate.data.response.PreferenceResponse
@@ -51,4 +52,7 @@ interface ApiService {
 
     @GET("detailBook/{id}")
     fun getDetailBook(@Path("id") id: Int): Call<BookDetailResponse>
+
+    @GET("bookmarks")
+    fun getBookmarks(): Call<BookmarkResponse>
 }

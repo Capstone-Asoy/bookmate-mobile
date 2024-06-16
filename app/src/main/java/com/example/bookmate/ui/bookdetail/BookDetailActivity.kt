@@ -29,7 +29,6 @@ class BookDetailActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-
     }
 
     private fun setupObserver() {
@@ -62,6 +61,7 @@ class BookDetailActivity : AppCompatActivity() {
         binding.information.tvPagesValue.text = book.pageCount.toString()
         binding.information.tvIsbnValue.text = book.isbn
         binding.information.tvGenreValue.text = book.genre.toString()
+        binding.checkboxBookmark.isChecked = book.isBookmarked
         Glide.with(binding.root.context)
             .load(book.coverImage)
             .placeholder(R.drawable.default_cover)
