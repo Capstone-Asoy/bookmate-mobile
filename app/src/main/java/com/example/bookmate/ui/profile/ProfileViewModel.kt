@@ -61,7 +61,7 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
                                 true,
                                 userValue.isNewUser
                             )
-                            _profileData.value = responseBody
+                            _profileData.value = responseBody!!
                             _user.value = newData
                         }
                         _errorMessage.value = ""

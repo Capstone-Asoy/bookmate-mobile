@@ -43,12 +43,15 @@
     <string name="register_success">Registration successful!</string>
     <string name="login_success">Enjoy your reads!</string>
 
+    <!--    Home-->
+    <string name="for_you">For you</string>
+    <string name="no_relevant">No relevant books</string>
+    <string name="searchbar_hint">Search title or author..</string>
+
     <!--    Genre Preference-->
     <string name="genre">Genre</string>
     <string name="preference_title">Preferred read?</string>
     <string name="preference_subtitle">Pick 5 genres to customize your home feed</string>
-
-    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui. Vestibulum vel porttitor ante.</string>
 
     <!--    Book Detail-->
     <string name="book_synopsis">Synopsis</string>
@@ -58,13 +61,19 @@
     <string name="review">Review</string>
     <string name="judulbuku">Judul Buku</string>
     <string name="penulisbuku">Penulis Buku</string>
-    <string name="log_out">Log Out</string>
+
+    <!--    Profile-->
     <string name="reading_list">Reading List</string>
     <string name="number">0 </string>
     <string name="book_reviewed">Book Reviewed</string>
     <string name="recent_books">Recent Books</string>
     <string name="start_explore">Start explore books!</string>
+    <string name="log_out">Log Out</string>
 
-    <!--    Profile-->
+    <!--    Bookmark-->
+    <string name="your_reading">Your Reading List</string>
+    <string name="book_title">Book Title</string>
+    <string name="no_bookmark">No bookmarks yet</string>
 
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui. Vestibulum vel porttitor ante.</string>
 </resources>
