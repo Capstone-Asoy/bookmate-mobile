@@ -30,28 +30,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="@string/fullname"
         android:textAlignment="center"
         android:textColor="@color/slate_700"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/section_image"
-        android:text="@string/fullname" />
+        app:layout_constraintTop_toBottomOf="@id/section_image" />
 
     <TextView
         android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:text="@string/email"
         android:textAlignment="center"
         android:textColor="@color/gray_500"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_name"
-        android:text="@string/email" />
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
     <LinearLayout
         android:id="@+id/section_reading_list"
@@ -135,33 +135,52 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/img_no_history"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
-            android:src="@drawable/ic_books_24" />
+            android:src="@drawable/ic_books_24"
+            android:visibility="gone" />
 
         <TextView
+            android:id="@+id/tv_no_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/start_explore"
             android:textAlignment="center"
             android:textColor="@color/gray_300"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_reviews"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_book" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="0dp"
-        android:paddingVertical="4dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="@color/white"
         android:drawableEnd="@drawable/ic_door_24"
+        android:paddingVertical="4dp"
         android:text="@string/log_out"
         android:textAlignment="textStart"
         android:textAllCaps="false"

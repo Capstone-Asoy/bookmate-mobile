@@ -1,6 +1,5 @@
 package com.example.bookmate.ui.bookdetail
 
-import android.nfc.NfcAdapter.EXTRA_ID
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
