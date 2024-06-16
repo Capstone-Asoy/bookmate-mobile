@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bookmate.data.UserRepository
+import com.example.bookmate.data.request.AddBookmarkRequest
+import com.example.bookmate.data.response.AddBookmarkResponse
 import com.example.bookmate.data.response.BookDetailResponse
 import com.example.bookmate.utils.getErrorMessageFromJson
 import retrofit2.Call
@@ -19,6 +21,11 @@ class BookDetailViewModel(private val repository: UserRepository) : ViewModel() 
 
     private val _isErrorGetData = MutableLiveData<Boolean>()
     val isErrorGetData: LiveData<Boolean> = _isErrorGetData
+
+    private val _bookmarkMessage = MutableLiveData<String>()
+
+    private val _isErrorAddBookmark = MutableLiveData<Boolean>()
+    val isErrorAddBookmark: LiveData<Boolean> = _isErrorAddBookmark
 
     private val _bookDetail = MutableLiveData<BookDetailResponse>()
     val bookDetail: LiveData<BookDetailResponse> = _bookDetail
@@ -35,6 +42,8 @@ class BookDetailViewModel(private val repository: UserRepository) : ViewModel() 
                 call: Call<BookDetailResponse>, response: Response<BookDetailResponse>
             ) {
                 _isLoading.value = false
+                Log.d(TAG, response.toString())
+
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
@@ -64,8 +73,43 @@ class BookDetailViewModel(private val repository: UserRepository) : ViewModel() 
         })
     }
 
+    fun addBookmark() {
+        _isLoading.value = true
+        val bookId = _bookId.value
+        if (bookId != null) {
+            val client = repository.getApiService().addBookmark(AddBookmarkRequest(bookId))
+            client.enqueue(object : Callback<AddBookmarkResponse> {
+                override fun onResponse(
+                    call: Call<AddBookmarkResponse>, response: Response<AddBookmarkResponse>
+                ) {
+                    _isLoading.value = false
+                    if (response.isSuccessful) {
+                        _isErrorAddBookmark.value = false
+
+                    } else {
+                        val errorMsg = getErrorMessageFromJson(response.errorBody()?.string())
+                        _bookmarkMessage.value = errorMsg
+                        _isErrorAddBookmark.value = true
+                        Log.e(TAG, errorMsg)
+                    }
+                }
+
+                override fun onFailure(call: Call<AddBookmarkResponse>, t: Throwable) {
+                    _isLoading.value = false
+                    _bookmarkMessage.value = "Unavailable service 😔"
+                    _isErrorAddBookmark.value = true
+                    Log.e(TAG, "onFailure 2: ${t.message}")
+                }
+            })
+        }
+    }
+
     fun getErrorMessage(): String {
         return _errorMessage.value ?: "Unknown error"
+    }
+
+    fun getBookmarkMessage(): String {
+        return _bookmarkMessage.value ?: "Unknown error"
     }
 
     companion object {

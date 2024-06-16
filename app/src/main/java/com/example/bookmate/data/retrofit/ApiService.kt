@@ -1,7 +1,9 @@
 package com.example.bookmate.data.retrofit
 
+import com.example.bookmate.data.request.AddBookmarkRequest
 import com.example.bookmate.data.request.LoginRequest
 import com.example.bookmate.data.request.PreferenceRequest
+import com.example.bookmate.data.response.AddBookmarkResponse
 import com.example.bookmate.data.response.BookDetailResponse
 import com.example.bookmate.data.response.BookmarkResponse
 import com.example.bookmate.data.response.GenreResponse
@@ -55,4 +57,7 @@ interface ApiService {
 
     @GET("bookmarks")
     fun getBookmarks(): Call<BookmarkResponse>
+
+    @POST("bookmarks")
+    fun addBookmark(@Body bodyRequest: AddBookmarkRequest): Call<AddBookmarkResponse>
 }

@@ -29,6 +29,13 @@ class BookDetailActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
+        binding.checkboxBookmark.setOnClickListener {
+            if (binding.checkboxBookmark.isChecked) {
+                viewModel.addBookmark()
+            } else {
+
+            }
+        }
     }
 
     private fun setupObserver() {
@@ -47,6 +54,13 @@ class BookDetailActivity : AppCompatActivity() {
         }
         viewModel.bookDetail.observe(this) {
             showData(it)
+        }
+        viewModel.isErrorAddBookmark.observe(this) {
+            if (it) {
+                showToast(viewModel.getBookmarkMessage())
+            } else {
+                showToast("Added to bookmark")
+            }
         }
     }
 
