@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookmate.data.UserRepository
 import com.example.bookmate.di.Injection
-import com.example.bookmate.ui.bookdetail.BookViewModel
+import com.example.bookmate.ui.bookdetail.BookDetailViewModel
 import com.example.bookmate.ui.bookmark.BookmarkViewModel
 import com.example.bookmate.ui.home.HomeViewModel
 import com.example.bookmate.ui.login.LoginViewModel
@@ -32,8 +32,8 @@ class ViewModelFactory(private val repository: UserRepository) :
             modelClass.isAssignableFrom(PreferenceViewModel::class.java) -> {
                 PreferenceViewModel(repository) as T
             }
-            modelClass.isAssignableFrom(BookViewModel::class.java) -> {
-                BookViewModel(repository) as T
+            modelClass.isAssignableFrom(BookDetailViewModel::class.java) -> {
+                BookDetailViewModel(repository) as T
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(repository) as T

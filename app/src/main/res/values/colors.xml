@@ -7,6 +7,10 @@
     <color name="gunmetal">#2B2C45</color>
     <color name="gunmetal_400">#28293D</color>
 
+    <color name="shadow_color">#80000000</color>
+    <color name="transparent">#000000</color>
+    <color name="overlay_black">#80000000</color>
+
     <!--    library-->
     <color name="slate_50">#F8FAFC</color>
     <color name="slate_100">#F1F5F9</color>
