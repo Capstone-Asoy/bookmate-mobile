@@ -1,7 +1,11 @@
 package com.example.bookmate.data.retrofit
 
+import com.example.bookmate.data.request.AddBookmarkRequest
 import com.example.bookmate.data.request.LoginRequest
 import com.example.bookmate.data.request.PreferenceRequest
+import com.example.bookmate.data.response.AddBookmarkResponse
+import com.example.bookmate.data.response.BookDetailResponse
+import com.example.bookmate.data.response.BookmarkResponse
 import com.example.bookmate.data.response.GenreResponse
 import com.example.bookmate.data.response.LoginResponse
 import com.example.bookmate.data.response.PreferenceResponse
@@ -17,6 +21,7 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -46,4 +51,13 @@ interface ApiService {
 
     @GET("search")
     fun search(@Query("keyword") keyword: String): Call<SearchResponse>
+
+    @GET("detailBook/{id}")
+    fun getDetailBook(@Path("id") id: Int): Call<BookDetailResponse>
+
+    @GET("bookmarks")
+    fun getBookmarks(): Call<BookmarkResponse>
+
+    @POST("bookmarks")
+    fun addBookmark(@Body bodyRequest: AddBookmarkRequest): Call<AddBookmarkResponse>
 }

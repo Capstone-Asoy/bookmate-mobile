@@ -1,6 +1,7 @@
 package com.example.bookmate.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.bookmate.components.SearchField
 import com.example.bookmate.data.response.BookItem
 import com.example.bookmate.databinding.FragmentHomeBinding
+import com.example.bookmate.ui.bookdetail.BookDetailActivity
 import com.example.bookmate.utils.ViewModelFactory
 
 class HomeFragment : Fragment() {
@@ -52,8 +54,10 @@ class HomeFragment : Fragment() {
         viewModel.listBuku.observe(requireActivity()) {
             if (it.isEmpty()) {
                 binding.tvNoData.visibility = View.VISIBLE
+                binding.rvBook.visibility = View.GONE
             } else {
                 binding.tvNoData.visibility = View.GONE
+                binding.rvBook.visibility = View.VISIBLE
                 showGenreData(it)
             }
         }
@@ -98,7 +102,9 @@ class HomeFragment : Fragment() {
         adapter.submitList(listBuku)
         adapter.setOnItemClickCallback(object : BookAdapter.OnItemClickCallback {
             override fun onItemClicked(data: BookItem) {
-                showToast(data.judul)
+                val intent = Intent(activity, BookDetailActivity::class.java)
+                intent.putExtra(BookDetailActivity.EXTRA_ID, data.booksId)
+                startActivity(intent)
             }
         })
         binding.rvBook.adapter = adapter

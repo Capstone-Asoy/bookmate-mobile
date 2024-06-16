@@ -23,7 +23,6 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _isError = MutableLiveData<Boolean>()
-    val isError: LiveData<Boolean> = _isError
 
     private val _profileData = MutableLiveData<ProfileResponse>()
     val profileData: LiveData<ProfileResponse> = _profileData
@@ -61,8 +60,8 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
                                 true,
                                 userValue.isNewUser
                             )
-                            _profileData.value = responseBody!!
                             _user.value = newData
+                            _profileData.value = responseBody!!
                         }
                         _errorMessage.value = ""
                         _isError.value = false

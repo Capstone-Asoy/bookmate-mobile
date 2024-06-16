@@ -56,11 +56,24 @@
     <!--    Book Detail-->
     <string name="book_synopsis">Synopsis</string>
     <string name="dummy_synopsis">Elspeth needs a monster. The monster might be her. Elspeth Spindle needs more than luck to stay safe in the eerie, mist-locked kingdom of Blunder—she needs a monster. She calls him the Nightmare, an ancient, mercurial spirit trapped in her head. He protects her. He keeps her secrets. But nothing comes for free, especially magic. When Elspeth meets a mysterious highwayman on the forest road, her life takes a drastic turn. Thrust into a world of shadow and deception, she joins a dangerous quest to cure Blunder from the dark magic infecting it. And the highwayman? He just so happens to be the King’s nephew, Captain of the most dangerous men in Blunder…and guilty of high treason. Together they must gather twelve Providence Cards—the keys to the cure. But as the stakes heighten and their undeniable attraction intensifies, Elspeth is forced to face her darkest secret yet: the Nightmare is slowly taking over her mind. And she might not be able to stop him.</string>
-    <string name="give_review">Review</string>
+    <string name="give_review">Give Review</string>
     <string name="synopsis">Synopsis</string>
     <string name="review">Review</string>
-    <string name="judulbuku">Judul Buku</string>
-    <string name="penulisbuku">Penulis Buku</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="img_bg">Background</string>
+    <string name="book_detail">Book Detail</string>
+    <string name="publisher">Publisher</string>
+    <string name="published_year">Published Year</string>
+    <string name="pages">Pages</string>
+    <string name="isbn">ISBN</string>
+    <string name="no_review">No reviews available</string>
+    <string name="cover">Book Cover</string>
+    <string name="lorem_1">lorem</string>
+    <string name="reviewer">Reviewer</string>
+    <string name="rating">Rating</string>
+    <string name="review_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet.</string>
+    <string name="review_date">dd MM yyyy</string>
 
     <!--    Profile-->
     <string name="reading_list">Reading List</string>
