@@ -40,6 +40,11 @@ class HomeFragment : Fragment() {
         setupAction()
     }
 
+    override fun onResume() {
+        super.onResume()
+        search()
+    }
+
     private fun setupObserver() {
         viewModel.getData()
 
@@ -94,7 +99,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun search() {
-        viewModel.search(binding.edSearch.text.toString())
+        val searchText = binding.edSearch.text.toString()
+
+        if (searchText.isNotBlank()) {
+            viewModel.search(searchText)
+        } else {
+            viewModel.getData()
+        }
     }
 
     private fun showGenreData(listBuku: List<BookItem>) {

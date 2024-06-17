@@ -1,9 +1,11 @@
 package com.example.bookmate.data.retrofit
 
 import com.example.bookmate.data.request.AddBookmarkRequest
+import com.example.bookmate.data.request.AddReviewRequest
 import com.example.bookmate.data.request.LoginRequest
 import com.example.bookmate.data.request.PreferenceRequest
 import com.example.bookmate.data.response.AddBookmarkResponse
+import com.example.bookmate.data.response.AddReviewResponse
 import com.example.bookmate.data.response.BookDetailResponse
 import com.example.bookmate.data.response.BookmarkResponse
 import com.example.bookmate.data.response.DeleteBookmarkResponse
@@ -65,4 +67,10 @@ interface ApiService {
 
     @DELETE("bookmarks/{id}")
     fun deleteBookmark(@Path("id") id: Int): Call<DeleteBookmarkResponse>
+
+    @POST("detailBook/addRating")
+    fun addReview(
+        @Query("books_id") booksId: Int,
+        @Body addReviewViewModel: AddReviewRequest
+    ): Call<AddReviewResponse>
 }

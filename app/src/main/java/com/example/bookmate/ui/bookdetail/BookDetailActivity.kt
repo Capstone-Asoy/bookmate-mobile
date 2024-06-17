@@ -29,6 +29,15 @@ class BookDetailActivity : AppCompatActivity() {
         setupObserver()
     }
 
+    override fun onResume() {
+        super.onResume()
+        val bookId = intent.getIntExtra(EXTRA_ID, -1)
+
+        if (bookId != -1) {
+            viewModel.getBookDetail(bookId)
+        }
+    }
+
     private fun setupAction() {
         binding.checkboxBookmark.setOnClickListener {
             if (binding.checkboxBookmark.isChecked) {

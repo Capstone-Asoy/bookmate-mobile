@@ -45,7 +45,16 @@ class AddReviewActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.btnSendNext.setOnClickListener {
+            val review = binding.edReview.editText?.text.toString()
+            val rating = binding.checkboxRating.getRating()
 
+            if (rating == 0) {
+                showToast("Give your rating!")
+            } else if (review.isBlank()) {
+                showToast("Give your review description")
+            } else {
+                viewModel.sendReview(rating, review)
+            }
         }
     }
 
@@ -60,6 +69,14 @@ class AddReviewActivity : AppCompatActivity() {
                 .into(binding.imgCover)
             binding.tvTitle.text = it.title
             binding.tvAuthor.text = it.author
+        }
+        viewModel.isError.observe(this) {
+            if (it) {
+                showToast(viewModel.getErrorMessage())
+            } else {
+                showToast("Review added, thank you!")
+                finish()
+            }
         }
     }
 
