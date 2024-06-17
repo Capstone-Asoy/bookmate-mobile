@@ -83,6 +83,9 @@
     <string name="recent_books">Recent Books</string>
     <string name="start_explore">Start explore books!</string>
     <string name="log_out">Log Out</string>
+    <string name="logout_msg">Sure you want to log out?</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
 
     <!--    Bookmark-->
     <string name="your_reading">Your Reading List</string>

@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupObserver() {
-        viewModel.getData()
+        search()
 
         viewModel.isLoading.observe(requireActivity()) {
             showLoading(it)
