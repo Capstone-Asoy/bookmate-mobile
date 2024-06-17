@@ -48,15 +48,15 @@ class BookmarkFragment : Fragment() {
     private fun setupObserver() {
         viewModel.getBookmarks()
 
-        viewModel.isLoading.observe(requireActivity()) {
+        viewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
-        viewModel.isError.observe(requireActivity()) {
+        viewModel.isError.observe(viewLifecycleOwner) {
             if (it) {
                 showToast(viewModel.getErrorMessage())
             }
         }
-        viewModel.listBookmark.observe(requireActivity()) {
+        viewModel.listBookmark.observe(viewLifecycleOwner) {
             showData(it)
         }
     }

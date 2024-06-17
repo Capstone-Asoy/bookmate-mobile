@@ -9,6 +9,7 @@ import com.example.bookmate.data.response.AddReviewResponse
 import com.example.bookmate.data.response.BookDetailResponse
 import com.example.bookmate.data.response.BookmarkResponse
 import com.example.bookmate.data.response.DeleteBookmarkResponse
+import com.example.bookmate.data.response.FilterGenreResponse
 import com.example.bookmate.data.response.GenreResponse
 import com.example.bookmate.data.response.LoginResponse
 import com.example.bookmate.data.response.PreferenceResponse
@@ -73,4 +74,7 @@ interface ApiService {
         @Query("books_id") booksId: Int,
         @Body addReviewViewModel: AddReviewRequest
     ): Call<AddReviewResponse>
+
+    @GET("filter")
+    fun filterByGenre(@Query("genre") genre: String): Call<FilterGenreResponse>
 }

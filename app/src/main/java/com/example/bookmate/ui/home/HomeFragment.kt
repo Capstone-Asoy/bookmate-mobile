@@ -48,26 +48,26 @@ class HomeFragment : Fragment() {
     private fun setupObserver() {
         search()
 
-        viewModel.isLoading.observe(requireActivity()) {
+        viewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
 
-        viewModel.pageTitle.observe(requireActivity()) {
+        viewModel.pageTitle.observe(viewLifecycleOwner) {
             binding.tvTitle.text = it
         }
 
-        viewModel.listBuku.observe(requireActivity()) {
+        viewModel.listBuku.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
                 binding.tvNoData.visibility = View.VISIBLE
                 binding.rvBook.visibility = View.GONE
             } else {
                 binding.tvNoData.visibility = View.GONE
                 binding.rvBook.visibility = View.VISIBLE
-                showGenreData(it)
+                showBookData(it)
             }
         }
 
-        viewModel.isErrorGetData.observe(requireActivity()) {
+        viewModel.isErrorGetData.observe(viewLifecycleOwner) {
             if (it) {
                 showToast(viewModel.getErrorMessage())
             }
@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun showGenreData(listBuku: List<BookItem>) {
+    private fun showBookData(listBuku: List<BookItem>) {
         val adapter = BookAdapter()
         adapter.submitList(listBuku)
         adapter.setOnItemClickCallback(object : BookAdapter.OnItemClickCallback {

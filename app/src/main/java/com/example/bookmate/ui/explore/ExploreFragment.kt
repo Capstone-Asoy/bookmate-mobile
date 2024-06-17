@@ -19,7 +19,7 @@ class ExploreFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentExploreBinding.inflate(layoutInflater)
+        binding = FragmentExploreBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         viewModel = obtainViewModel(this)

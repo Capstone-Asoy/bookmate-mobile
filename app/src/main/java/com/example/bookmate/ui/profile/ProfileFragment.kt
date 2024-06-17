@@ -46,9 +46,9 @@ class ProfileFragment : Fragment() {
 
     private fun setupObserver() {
         viewModel.getData()
-        viewModel.isLoading.observe(requireActivity()) {}
+        viewModel.isLoading.observe(viewLifecycleOwner) {}
 
-        viewModel.user.observe(requireActivity()) {
+        viewModel.user.observe(viewLifecycleOwner) {
             binding.tvEmail.text = it.email
             binding.tvName.text = it.name
             if (it.photoUrl.isNotBlank()) {
@@ -56,7 +56,7 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        viewModel.profileData.observe(requireActivity()) {
+        viewModel.profileData.observe(viewLifecycleOwner) {
             binding.tvReadingList.text = it.readingList.toString()
             binding.tvBookReviewed.text = it.listRating.toString()
 
