@@ -8,6 +8,7 @@ import com.example.bookmate.di.Injection
 import com.example.bookmate.ui.addReview.AddReviewViewModel
 import com.example.bookmate.ui.bookdetail.BookDetailViewModel
 import com.example.bookmate.ui.bookmark.BookmarkViewModel
+import com.example.bookmate.ui.explore.ExploreViewModel
 import com.example.bookmate.ui.home.HomeViewModel
 import com.example.bookmate.ui.login.LoginViewModel
 import com.example.bookmate.ui.main.MainViewModel
@@ -48,7 +49,9 @@ class ViewModelFactory(private val repository: UserRepository) :
             modelClass.isAssignableFrom(AddReviewViewModel::class.java) -> {
                 AddReviewViewModel(repository) as T
             }
-
+            modelClass.isAssignableFrom(ExploreViewModel::class.java) -> {
+                ExploreViewModel(repository) as T
+            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }
