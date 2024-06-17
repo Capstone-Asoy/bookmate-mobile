@@ -48,7 +48,6 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-
                         val userValue = _user.value
                         if (userValue != null && userValue.name.isBlank()) {
                             updateProfileData(responseBody.name, responseBody.image)
@@ -61,8 +60,8 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
                                 userValue.isNewUser
                             )
                             _user.value = newData
-                            _profileData.value = responseBody!!
                         }
+                        _profileData.value = responseBody!!
                         _errorMessage.value = ""
                         _isError.value = false
                     } else {

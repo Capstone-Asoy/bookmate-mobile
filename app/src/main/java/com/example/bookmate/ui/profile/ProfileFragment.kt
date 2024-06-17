@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.bookmate.R
 import com.example.bookmate.databinding.FragmentProfileBinding
 import com.example.bookmate.ui.login.LoginActivity
+import com.example.bookmate.ui.welcome.WelcomeActivity
 import com.example.bookmate.utils.ViewModelFactory
 
 class ProfileFragment : Fragment() {
@@ -36,11 +39,16 @@ class ProfileFragment : Fragment() {
         setupAction()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getData()
+    }
+
     private fun setupObserver() {
         viewModel.getData()
-        viewModel.isLoading.observe(requireActivity()) {}
+        viewModel.isLoading.observe(viewLifecycleOwner) {}
 
-        viewModel.user.observe(requireActivity()) {
+        viewModel.user.observe(viewLifecycleOwner) {
             binding.tvEmail.text = it.email
             binding.tvName.text = it.name
             if (it.photoUrl.isNotBlank()) {
@@ -48,7 +56,7 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        viewModel.profileData.observe(requireActivity()) {
+        viewModel.profileData.observe(viewLifecycleOwner) {
             binding.tvReadingList.text = it.readingList.toString()
             binding.tvBookReviewed.text = it.listRating.toString()
 
@@ -70,10 +78,25 @@ class ProfileFragment : Fragment() {
 
     private fun setupAction() {
         binding.btnLogout.setOnClickListener {
-            viewModel.logout()
+            showLogoutDialog()
+        }
+    }
 
-            startActivity(Intent(activity, LoginActivity::class.java))
-            requireActivity().finish()
+    private fun showLogoutDialog() {
+        AlertDialog.Builder(requireActivity()).apply {
+            setTitle(R.string.log_out)
+            setMessage(R.string.logout_msg)
+            setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            setPositiveButton(R.string.yes) { _, _ ->
+                viewModel.logout()
+
+                startActivity(Intent(activity, LoginActivity::class.java))
+                requireActivity().finish()
+            }
+            create()
+            show()
         }
     }
 

@@ -1,6 +1,8 @@
 package com.example.bookmate.data.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class BookDetailResponse(
 
@@ -58,3 +60,11 @@ data class ReviewsItem(
 	@field:SerializedName("userName")
 	val userName: String
 )
+
+@Parcelize
+data class BookParcelize(
+	val bookId: Int,
+	val title: String,
+	val author: String,
+	val coverImage: String,
+): Parcelable

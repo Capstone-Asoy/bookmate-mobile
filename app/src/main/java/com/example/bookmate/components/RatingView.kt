@@ -9,9 +9,7 @@ import androidx.core.content.ContextCompat
 import com.example.bookmate.R
 
 class RatingView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
     private var ratingValue: Int = 0
@@ -38,15 +36,13 @@ class RatingView @JvmOverloads constructor(
             if (i < ratingValue) {
                 starViews[i].setImageDrawable(
                     ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_star_filled_24
+                        context, R.drawable.ic_star_filled_24
                     )
                 )
             } else {
                 starViews[i].setImageDrawable(
                     ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_star_24
+                        context, R.drawable.ic_star_24
                     )
                 )
             }

@@ -1,11 +1,15 @@
 package com.example.bookmate.data.retrofit
 
 import com.example.bookmate.data.request.AddBookmarkRequest
+import com.example.bookmate.data.request.AddReviewRequest
 import com.example.bookmate.data.request.LoginRequest
 import com.example.bookmate.data.request.PreferenceRequest
 import com.example.bookmate.data.response.AddBookmarkResponse
+import com.example.bookmate.data.response.AddReviewResponse
 import com.example.bookmate.data.response.BookDetailResponse
 import com.example.bookmate.data.response.BookmarkResponse
+import com.example.bookmate.data.response.DeleteBookmarkResponse
+import com.example.bookmate.data.response.FilterGenreResponse
 import com.example.bookmate.data.response.GenreResponse
 import com.example.bookmate.data.response.LoginResponse
 import com.example.bookmate.data.response.PreferenceResponse
@@ -17,6 +21,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -60,4 +65,16 @@ interface ApiService {
 
     @POST("bookmarks")
     fun addBookmark(@Body bodyRequest: AddBookmarkRequest): Call<AddBookmarkResponse>
+
+    @DELETE("bookmarks/{id}")
+    fun deleteBookmark(@Path("id") id: Int): Call<DeleteBookmarkResponse>
+
+    @POST("detailBook/addRating")
+    fun addReview(
+        @Query("books_id") booksId: Int,
+        @Body addReviewViewModel: AddReviewRequest
+    ): Call<AddReviewResponse>
+
+    @GET("filter")
+    fun filterByGenre(@Query("genre") genre: String): Call<FilterGenreResponse>
 }

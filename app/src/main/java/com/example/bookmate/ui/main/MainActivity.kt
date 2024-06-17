@@ -8,18 +8,16 @@ import android.util.Log
 import android.view.View
 import android.view.ViewOutlineProvider
 import androidx.activity.enableEdgeToEdge
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.bookmate.R
 import com.example.bookmate.databinding.ActivityMainBinding
 import com.example.bookmate.ui.preference.PreferenceActivity
 import com.example.bookmate.ui.welcome.WelcomeActivity
 import com.example.bookmate.utils.ViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel

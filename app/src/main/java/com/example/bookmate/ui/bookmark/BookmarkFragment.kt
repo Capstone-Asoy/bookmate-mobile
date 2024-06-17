@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.example.bookmate.data.response.BookItem
 import com.example.bookmate.data.response.BookmarksItem
 import com.example.bookmate.databinding.FragmentBookmarkBinding
 import com.example.bookmate.ui.bookdetail.BookDetailActivity
-import com.example.bookmate.ui.home.BookAdapter
 import com.example.bookmate.utils.ViewModelFactory
 
 class BookmarkFragment : Fragment() {
@@ -22,7 +20,7 @@ class BookmarkFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBookmarkBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -38,6 +36,11 @@ class BookmarkFragment : Fragment() {
         setupAction()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getBookmarks()
+    }
+
     private fun setupAction() {
 
     }
@@ -45,15 +48,15 @@ class BookmarkFragment : Fragment() {
     private fun setupObserver() {
         viewModel.getBookmarks()
 
-        viewModel.isLoading.observe(requireActivity()) {
+        viewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
-        viewModel.isError.observe(requireActivity()) {
+        viewModel.isError.observe(viewLifecycleOwner) {
             if (it) {
                 showToast(viewModel.getErrorMessage())
             }
         }
-        viewModel.listBookmark.observe(requireActivity()) {
+        viewModel.listBookmark.observe(viewLifecycleOwner) {
             showData(it)
         }
     }

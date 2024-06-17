@@ -10,3 +10,9 @@ data class AddBookmarkResponse(
 	@field:SerializedName("message")
 	val message: String
 )
+
+
+data class DeleteBookmarkResponse(
+	@field:SerializedName("message")
+	val message: String
+)
