@@ -1,5 +1,6 @@
 package com.example.bookmate.ui.bookdetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.bookmate.R
 import com.example.bookmate.data.response.BookDetailResponse
 import com.example.bookmate.databinding.ActivityBookDetailBinding
+import com.example.bookmate.ui.addReview.AddReviewActivity
 import com.example.bookmate.utils.ViewModelFactory
 
 class BookDetailActivity : AppCompatActivity() {
@@ -32,7 +34,18 @@ class BookDetailActivity : AppCompatActivity() {
             if (binding.checkboxBookmark.isChecked) {
                 viewModel.addBookmark()
             } else {
+                viewModel.deleteBookmark()
+            }
+        }
 
+        binding.btnGiveReview.setOnClickListener {
+            val book = viewModel.getBookParcelize()
+            book?.let {
+                val intent = Intent(this, AddReviewActivity::class.java)
+                intent.putExtra(AddReviewActivity.EXTRA_BOOK, book)
+                startActivity(intent)
+            } ?: run {
+                showToast("Couldn't add review now. Try again later")
             }
         }
     }
@@ -57,15 +70,24 @@ class BookDetailActivity : AppCompatActivity() {
         viewModel.isErrorAddBookmark.observe(this) {
             if (it) {
                 showToast(viewModel.getBookmarkMessage())
+                binding.checkboxBookmark.isChecked = false
             } else {
                 showToast("Added to bookmark")
+            }
+        }
+        viewModel.isErrorDeleteBookmark.observe(this) {
+            if (it) {
+                showToast(viewModel.getBookmarkMessage())
+                binding.checkboxBookmark.isChecked = true
+            } else {
+                showToast("Deleted from bookmark")
             }
         }
     }
 
     private fun showData(book: BookDetailResponse) {
         binding.tvTitle.text = book.title
-        binding.tvAuthor.text = book.author
+        binding.tvAuthor.text = getString(R.string.by_author, book.author)
         binding.tvRating.text = book.avgRating
         binding.ratingStar.setRatingValue(book.avgRating.toDouble().toInt())
         binding.information.tvSynopsis.text = book.synopsis

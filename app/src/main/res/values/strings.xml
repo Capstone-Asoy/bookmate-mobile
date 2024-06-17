@@ -74,6 +74,7 @@
     <string name="rating">Rating</string>
     <string name="review_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet.</string>
     <string name="review_date">dd MM yyyy</string>
+    <string name="by_author">by %1$s</string>
 
     <!--    Profile-->
     <string name="reading_list">Reading List</string>
@@ -87,6 +88,11 @@
     <string name="your_reading">Your Reading List</string>
     <string name="book_title">Book Title</string>
     <string name="no_bookmark">No bookmarks yet</string>
+
+    <!--    Add Review-->
+    <string name="rate">RATE</string>
+    <string name="review_hint">What is the reason for the rating?</string>
+    <string name="send_review">Send Review</string>
 
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui. Vestibulum vel porttitor ante.</string>
 </resources>

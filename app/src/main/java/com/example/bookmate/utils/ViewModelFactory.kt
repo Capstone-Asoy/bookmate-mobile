@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookmate.data.UserRepository
 import com.example.bookmate.di.Injection
+import com.example.bookmate.ui.addReview.AddReviewViewModel
 import com.example.bookmate.ui.bookdetail.BookDetailViewModel
 import com.example.bookmate.ui.bookmark.BookmarkViewModel
 import com.example.bookmate.ui.home.HomeViewModel
@@ -43,6 +44,9 @@ class ViewModelFactory(private val repository: UserRepository) :
             }
             modelClass.isAssignableFrom(BookmarkViewModel::class.java) -> {
                 BookmarkViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(AddReviewViewModel::class.java) -> {
+                AddReviewViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

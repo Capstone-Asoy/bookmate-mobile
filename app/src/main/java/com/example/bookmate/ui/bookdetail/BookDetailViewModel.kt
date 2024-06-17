@@ -8,6 +8,8 @@ import com.example.bookmate.data.UserRepository
 import com.example.bookmate.data.request.AddBookmarkRequest
 import com.example.bookmate.data.response.AddBookmarkResponse
 import com.example.bookmate.data.response.BookDetailResponse
+import com.example.bookmate.data.response.BookParcelize
+import com.example.bookmate.data.response.DeleteBookmarkResponse
 import com.example.bookmate.utils.getErrorMessageFromJson
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +28,9 @@ class BookDetailViewModel(private val repository: UserRepository) : ViewModel() 
 
     private val _isErrorAddBookmark = MutableLiveData<Boolean>()
     val isErrorAddBookmark: LiveData<Boolean> = _isErrorAddBookmark
+
+    private val _isErrorDeleteBookmark = MutableLiveData<Boolean>()
+    val isErrorDeleteBookmark: LiveData<Boolean> = _isErrorDeleteBookmark
 
     private val _bookDetail = MutableLiveData<BookDetailResponse>()
     val bookDetail: LiveData<BookDetailResponse> = _bookDetail
@@ -101,7 +106,53 @@ class BookDetailViewModel(private val repository: UserRepository) : ViewModel() 
                     Log.e(TAG, "onFailure 2: ${t.message}")
                 }
             })
+        }  else {
+            _bookmarkMessage.value = "Unknown book id"
+            _isErrorAddBookmark.value = true
         }
+    }
+
+    fun deleteBookmark() {
+        _isLoading.value = true
+        val bookId = _bookId.value
+        if (bookId != null) {
+            val client = repository.getApiService().deleteBookmark(bookId)
+            client.enqueue(object : Callback<DeleteBookmarkResponse> {
+                override fun onResponse(
+                    call: Call<DeleteBookmarkResponse>, response: Response<DeleteBookmarkResponse>
+                ) {
+                    _isLoading.value = false
+                    if (response.isSuccessful) {
+                        _isErrorDeleteBookmark.value = false
+
+                    } else {
+                        val errorMsg = getErrorMessageFromJson(response.errorBody()?.string())
+                        _bookmarkMessage.value = errorMsg
+                        _isErrorDeleteBookmark.value = true
+                        Log.e(TAG, errorMsg)
+                    }
+                }
+
+                override fun onFailure(call: Call<DeleteBookmarkResponse>, t: Throwable) {
+                    _isLoading.value = false
+                    _bookmarkMessage.value = "Unavailable service 😔"
+                    _isErrorDeleteBookmark.value = true
+                    Log.e(TAG, "onFailure 2: ${t.message}")
+                }
+            })
+        } else {
+            _bookmarkMessage.value = "Unknown book id"
+            _isErrorDeleteBookmark.value = true
+        }
+    }
+
+    fun getBookParcelize(): BookParcelize? {
+        val book = _bookDetail.value
+
+        if (book != null) {
+            return BookParcelize(book.bookId, book.title, book.author, book.coverImage)
+        }
+        return null
     }
 
     fun getErrorMessage(): String {

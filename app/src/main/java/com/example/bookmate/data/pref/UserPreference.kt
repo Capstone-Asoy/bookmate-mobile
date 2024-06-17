@@ -25,15 +25,19 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     }
 
     suspend fun setName(name: String) {
-        dataStore.edit { preference -> {
-            preference[NAME_KEY] = name
-        }}
+        dataStore.edit { preference ->
+            run {
+                preference[NAME_KEY] = name
+            }
+        }
     }
 
     suspend fun setPhotoImage(url: String) {
-        dataStore.edit { preference -> {
-            preference[PHOTO_KEY] = url
-        }}
+        dataStore.edit { preference ->
+            run {
+                preference[PHOTO_KEY] = url
+            }
+        }
     }
 
     suspend fun setNewUserKey() {
