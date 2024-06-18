@@ -44,9 +44,13 @@
     <string name="login_success">Enjoy your reads!</string>
 
     <!--    Home-->
-    <string name="for_you">For you</string>
+    <string name="for_you">Recommended for you</string>
+    <string name="for_you2">Your tailored picks</string>
     <string name="no_relevant">No relevant books</string>
     <string name="searchbar_hint">Search title or author..</string>
+    <string name="based_on_history">Based on your history</string>
+    <string name="based_on_bookmarks">Suggestions from bookmarks</string>
+    <string name="welcome_back">Hello!</string>
 
     <!--    Genre Preference-->
     <string name="genre">Genre</string>
@@ -96,6 +100,9 @@
     <string name="rate">RATE</string>
     <string name="review_hint">What is the reason for the rating?</string>
     <string name="send_review">Send Review</string>
+
+    <!--    Explore-->
+    <string name="no_genre">Couldn\'t get genre data. Try again later</string>
 
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui. Vestibulum vel porttitor ante.</string>
     <!-- TODO: Remove or change this placeholder text -->

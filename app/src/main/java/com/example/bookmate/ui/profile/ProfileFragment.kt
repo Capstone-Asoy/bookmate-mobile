@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.bookmate.R
@@ -51,7 +52,7 @@ class ProfileFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner) {
             binding.tvEmail.text = it.email
             binding.tvName.text = it.name
-            if (it.photoUrl.isNotBlank()) {
+            if (it.photoUrl.isNotBlank() && !it.photoUrl.endsWith(getString(R.string.no_image))) {
                 Glide.with(binding.root.context).load(it.photoUrl).into(binding.imgProfile)
             }
         }

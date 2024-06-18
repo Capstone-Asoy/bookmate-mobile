@@ -98,7 +98,13 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
                             val imageFileName =
                                 if (imageFile != null) imageFile.name else context.getString(R.string.no_image)
                             val user =
-                                generateUserModel(name, email, responseBody.token, imageFileName)
+                                generateUserModel(
+                                    name,
+                                    email,
+                                    responseBody.token,
+                                    imageFileName,
+                                    context
+                                )
 
                             saveSession(user)
                             _errorMessage.value = ""
@@ -174,9 +180,10 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     private fun generateUserModel(
-        name: String, email: String, token: String, imageFileName: String
+        name: String, email: String, token: String, imageFileName: String, context: Context
     ): UserModel {
-        val photoUrl = BuildConfig.IMAGE_URL + name + "-" + imageFileName
+        val photoUrl =
+            if (imageFileName != context.getString(R.string.no_image)) BuildConfig.IMAGE_URL + name + "-" + imageFileName else ""
 
         return UserModel(name, email, token, photoUrl, isLogin = true, isNewUser = true)
     }

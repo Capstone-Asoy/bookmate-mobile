@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/fragmentBackground"
     tools:context=".ui.explore.ExploreFragment">
 
     <LinearLayout
@@ -16,6 +17,7 @@
         android:paddingTop="32dp"
         android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -31,7 +33,8 @@
             android:inputType="text"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
-            android:textColorHint="@color/gray_400" />
+            android:backgroundTint="?attr/fieldBackground"
+            android:textColorHint="?attr/fieldHintColor" />
     </LinearLayout>
 
     <ProgressBar
@@ -49,12 +52,14 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="?attr/fragmentBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_bar_area"
+        app:tabIndicatorColor="?attr/tabActiveTextColor"
         app:tabMode="scrollable"
-        app:tabTextColor="@color/gray_500" />
+        app:tabSelectedTextColor="?attr/tabActiveTextColor"
+        app:tabTextColor="?attr/tabNonActiveTextColor" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
@@ -64,6 +69,86 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabs" />
+
+    <LinearLayout
+        android:id="@+id/tv_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_bar_area">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/no_genre"
+            android:src="@drawable/ic_server_off_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_genre"
+            android:textAlignment="center"
+            android:textColor="@color/gray_400"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tv_no_relevant_data"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_bar_area">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/no_relevant"
+            android:src="@drawable/ic_sad_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_relevant"
+            android:textAlignment="center"
+            android:textColor="@color/gray_400"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_book"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:overScrollMode="never"
+        android:paddingBottom="64dp"
+        android:scrollbarSize="0dp"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_bar_area"
+        app:spanCount="3"
+        tools:itemCount="20"
+        tools:listitem="@layout/item_book" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

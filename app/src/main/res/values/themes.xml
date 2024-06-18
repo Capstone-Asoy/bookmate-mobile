@@ -14,5 +14,31 @@
 
         <!-- Customize your theme here. -->
         <item name="bottomNavBackgroundColor">@color/white</item>
+
+        <!--        Welcome-->
+        <item name="welcomeBg">@drawable/welcome_bg</item>
+        <item name="dotActive">@color/gunmetal_400</item>
+
+        <!--        Register-->
+        <item name="titleColor">@color/slate_700</item>
+        <item name="subtitleColor">@color/gray_500</item>
+        <item name="primaryLinkColor">@color/gunmetal_400</item>
+
+        <item name="fieldBackground">@color/white</item>
+        <item name="fieldHintColor">@color/gunmetal_400</item>
+        <item name="invalidIconColor">@color/red_600</item>
+        <item name="validIconColor">@color/orange_300</item>
+
+        <item name="fragmentBackground">@color/white</item>
+        <item name="tabActiveTextColor">@color/slate_700</item>
+        <item name="tabNonActiveTextColor">@color/gray_500</item>
+
+        <item name="sectionBackground">@color/orange_200</item>
+        <item name="contentBackground">@color/white</item>
+        <item name="secondarySectionBackground">@color/white</item>
+        <item name="sectionStroke">@color/gray_300</item>
+
+        <item name="activeIconNav">@color/orange_400</item>
+        <item name="genreBackground">@color/gray_300</item>
     </style>
 </resources>

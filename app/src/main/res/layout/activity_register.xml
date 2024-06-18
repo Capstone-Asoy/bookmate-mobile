@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/fragmentBackground"
     tools:context=".ui.register.RegisterActivity">
 
     <TextView
@@ -14,7 +15,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="@string/register"
-        android:textColor="@color/gunmetal_400"
+        android:textColor="?attr/titleColor"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/register_msg"
+        android:textColor="?attr/subtitleColor"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/tv_register"
@@ -47,10 +49,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:backgroundTint="@color/orange_200"
+        android:backgroundTint="?attr/colorPrimary"
         android:text="@string/choose_image"
         android:textAllCaps="false"
-        android:textColor="@color/gray_50"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/img_profile"
         app:layout_constraintStart_toEndOf="@id/img_profile"
         app:layout_constraintTop_toTopOf="@id/img_profile" />
@@ -64,8 +66,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/fullname"
-        app:boxBackgroundColor="@color/white"
-        app:hintTextColor="@color/gunmetal_400"
+        app:boxBackgroundColor="?attr/fieldBackground"
+        app:hintTextColor="?attr/fieldHintColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_profile">
@@ -86,8 +88,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/email"
-        app:boxBackgroundColor="@color/white"
-        app:hintTextColor="@color/gunmetal_400"
+        app:boxBackgroundColor="?attr/fieldBackground"
+        app:hintTextColor="?attr/fieldHintColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ed_name">
@@ -109,10 +111,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/password"
-        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundColor="?attr/fieldBackground"
         app:endIconDrawable="@drawable/ic_eye_24"
         app:endIconMode="password_toggle"
-        app:hintTextColor="@color/gunmetal_400"
+        app:hintTextColor="?attr/fieldHintColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ed_email">
@@ -143,7 +145,7 @@
             android:src="@drawable/ic_x_24"
             app:layout_constraintStart_toStartOf="@+id/ed_password"
             app:layout_constraintTop_toBottomOf="@+id/ed_password"
-            app:tint="@color/red_600" />
+            app:tint="?attr/invalidIconColor" />
 
         <ImageView
             android:id="@+id/ic_password_check"
@@ -180,7 +182,7 @@
             android:src="@drawable/ic_x_24"
             app:layout_constraintStart_toStartOf="@+id/ed_password"
             app:layout_constraintTop_toBottomOf="@+id/ed_password"
-            app:tint="@color/red_600" />
+            app:tint="?attr/invalidIconColor" />
 
         <ImageView
             android:id="@+id/ic_password_check_lower"
@@ -217,7 +219,7 @@
             android:src="@drawable/ic_x_24"
             app:layout_constraintStart_toStartOf="@+id/ed_password"
             app:layout_constraintTop_toBottomOf="@+id/ed_password"
-            app:tint="@color/red_600" />
+            app:tint="?attr/invalidIconColor" />
 
         <ImageView
             android:id="@+id/ic_password_check_upper"
@@ -245,10 +247,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/confirm_password"
-        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundColor="?attr/fieldBackground"
         app:endIconDrawable="@drawable/ic_eye_24"
         app:endIconMode="password_toggle"
-        app:hintTextColor="@color/gunmetal_400"
+        app:hintTextColor="?attr/fieldHintColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/msg_contain_upper">
@@ -281,7 +283,7 @@
             android:src="@drawable/ic_x_24"
             app:layout_constraintStart_toStartOf="@+id/ed_password"
             app:layout_constraintTop_toBottomOf="@+id/ed_password"
-            app:tint="@color/red_600" />
+            app:tint="?attr/invalidIconColor" />
 
         <TextView
             android:id="@+id/tv_password_confirmation"
@@ -289,7 +291,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/doesnt_match"
-            android:textColor="@color/red_600" />
+            android:textColor="?attr/invalidIconColor" />
     </LinearLayout>
 
     <LinearLayout
@@ -321,7 +323,7 @@
             android:padding="0dp"
             android:text="@string/sign_in"
             android:textAllCaps="false"
-            android:textColor="@color/gunmetal_400"
+            android:textColor="?attr/primaryLinkColor"
             tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 

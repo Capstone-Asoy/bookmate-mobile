@@ -3,6 +3,33 @@
     <!-- Declare custom attribute for bottom navigation background color -->
     <attr name="bottomNavBackgroundColor" format="color"/>
 
+    <!--    Welcome-->
+    <attr name="welcomeBg" format="color"/>
+    <attr name="dotActive" format="color"/>
+
+    <!--    Register-->
+    <attr name="titleColor" format="color"/>
+    <attr name="subtitleColor" format="color"/>
+    <attr name="primaryLinkColor" format="color"/>
+
+    <attr name="fieldBackground" format="color"/>
+    <attr name="fieldHintColor" format="color"/>
+    <attr name="invalidIconColor" format="color"/>
+    <attr name="validIconColor" format="color"/>
+
+    <attr name="fragmentBackground" format="color"/>
+    <attr name="tabActiveTextColor" format="color"/>
+    <attr name="tabNonActiveTextColor" format="color"/>
+
+    <attr name="sectionBackground" format="color"/>
+    <attr name="contentBackground" format="color"/>
+    <attr name="secondarySectionBackground" format="color"/>
+    <attr name="sectionStroke" format="color"/>
+
+    <attr name="activeIconNav" format="color"/>
+    <attr name="genreBackground" format="color"/>
+
+
     <declare-styleable name="CustomCheckboxTextView">
         <attr name="text" format="string" />
         <attr name="isChecked" format="boolean" />

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomAlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:background">?attr/secondarySectionBackground</item>
+        <item name="android:textColorPrimary">@color/orange_300</item>
+    </style>
+
+</resources>
