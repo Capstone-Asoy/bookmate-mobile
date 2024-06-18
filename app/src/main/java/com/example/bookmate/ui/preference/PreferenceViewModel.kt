@@ -89,10 +89,10 @@ class PreferenceViewModel(private val repository: UserRepository) : ViewModel() 
     }
 
     fun submitGenres() {
-        _isLoadingSubmit.value = true
         val selectedGenre = _selectedGenres.value
 
         if (selectedGenre != null && selectedGenre.size == 5) {
+            _isLoadingSubmit.value = true
             val client =
                 repository.getApiService().submitPreferences(PreferenceRequest(selectedGenre))
 

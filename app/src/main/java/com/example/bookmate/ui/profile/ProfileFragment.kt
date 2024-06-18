@@ -51,7 +51,7 @@ class ProfileFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner) {
             binding.tvEmail.text = it.email
             binding.tvName.text = it.name
-            if (it.photoUrl.isNotBlank()) {
+            if (it.photoUrl.isNotBlank() && !it.photoUrl.endsWith(getString(R.string.no_image))) {
                 Glide.with(binding.root.context).load(it.photoUrl).into(binding.imgProfile)
             }
         }
