@@ -22,6 +22,7 @@
         android:id="@+id/tv_reading_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="8dp"
         android:background="@drawable/rounded_bottom_background"
         android:gravity="center"
         android:orientation="vertical"

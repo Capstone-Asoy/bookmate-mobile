@@ -84,7 +84,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showLogoutDialog() {
-        AlertDialog.Builder(ContextThemeWrapper(requireActivity(), R.style.CustomAlertDialog)).apply {
+        AlertDialog.Builder(requireActivity()).apply {
             setTitle(R.string.log_out)
             setMessage(R.string.logout_msg)
             setNegativeButton(R.string.cancel) { dialog, _ ->

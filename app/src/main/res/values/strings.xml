@@ -50,6 +50,7 @@
     <string name="searchbar_hint">Search title or author..</string>
     <string name="based_on_history">Based on your history</string>
     <string name="based_on_bookmarks">Suggestions from bookmarks</string>
+    <string name="welcome_back">Hello!</string>
 
     <!--    Genre Preference-->
     <string name="genre">Genre</string>

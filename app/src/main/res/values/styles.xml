@@ -3,17 +3,7 @@
 
     <style name="CustomAlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
         <item name="android:background">?attr/secondarySectionBackground</item>
-        <item name="android:buttonBarPositiveButtonStyle">@style/CustomDialogButtonPositive</item>
-        <item name="android:buttonBarNegativeButtonStyle">@style/CustomDialogButtonNegative</item>
+        <item name="android:textColorPrimary">@color/orange_300</item>
     </style>
-
-    <style name="CustomDialogButtonPositive" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">?attr/titleColor</item>
-    </style>
-
-    <style name="CustomDialogButtonNegative" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">?attr/titleColor</item>
-    </style>
-
 
 </resources>
