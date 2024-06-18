@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkIsLogin() {
-        Log.d("TESTES", "KOAKOSKAOKSA")
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 startActivity(Intent(this, WelcomeActivity::class.java))

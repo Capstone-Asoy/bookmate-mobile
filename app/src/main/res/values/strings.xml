@@ -97,6 +97,9 @@
     <string name="review_hint">What is the reason for the rating?</string>
     <string name="send_review">Send Review</string>
 
+    <!--    Explore-->
+    <string name="no_genre">Couldn\'t get genre data. Try again later</string>
+
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio et sapien sagittis imperdiet. Quisque tristique scelerisque dui. Vestibulum vel porttitor ante.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
