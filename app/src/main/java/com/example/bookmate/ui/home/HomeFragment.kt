@@ -12,6 +12,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookmate.components.SearchField
 import com.example.bookmate.data.response.BookItem
 import com.example.bookmate.databinding.FragmentHomeBinding
@@ -66,6 +68,12 @@ class HomeFragment : Fragment() {
                 showBookData(it)
             }
         }
+        viewModel.listBuku2.observe(viewLifecycleOwner) {
+            showBookData2(it)
+        }
+        viewModel.listBukuFromHistory.observe(viewLifecycleOwner) {
+            showBookDataFromHistory(it)
+        }
 
         viewModel.isErrorGetData.observe(viewLifecycleOwner) {
             if (it) {
@@ -91,7 +99,7 @@ class HomeFragment : Fragment() {
             return@setOnEditorActionListener false
         }
 
-        binding.edSearch.setOnItemClickCallback(object: SearchField.OnItemClickCallback {
+        binding.edSearch.setOnItemClickCallback(object : SearchField.OnItemClickCallback {
             override fun onItemClicked() {
                 viewModel.getData()
             }
@@ -119,6 +127,62 @@ class HomeFragment : Fragment() {
             }
         })
         binding.rvBook.adapter = adapter
+    }
+
+    private fun showBookData2(listBuku: List<BookItem>) {
+        if (listBuku.isNotEmpty()) {
+            binding.tvForYou2.visibility = View.VISIBLE
+            binding.rvBook2.visibility = View.VISIBLE
+
+            val adapter = BookAdapter()
+            adapter.submitList(listBuku)
+            adapter.setOnItemClickCallback(object : BookAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: BookItem) {
+                    val intent = Intent(activity, BookDetailActivity::class.java)
+                    intent.putExtra(BookDetailActivity.EXTRA_ID, data.booksId)
+                    startActivity(intent)
+                }
+            })
+            binding.rvBook2.adapter = adapter
+        } else {
+            binding.tvForYou2.visibility = View.GONE
+            binding.rvBook2.visibility = View.GONE
+        }
+    }
+
+    private fun showBookDataFromHistory(listBuku: List<BookItem>) {
+        if (listBuku.isNotEmpty()) {
+            binding.rvBookFromHistory.visibility = View.VISIBLE
+            binding.tvBasedOnHistory.visibility = View.VISIBLE
+
+            val adapter = BookAdapter()
+            adapter.submitList(listBuku)
+            adapter.setOnItemClickCallback(object : BookAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: BookItem) {
+                    val intent = Intent(activity, BookDetailActivity::class.java)
+                    intent.putExtra(BookDetailActivity.EXTRA_ID, data.booksId)
+                    startActivity(intent)
+                }
+            })
+            binding.rvBookFromHistory.adapter = adapter
+
+        } else {
+            binding.rvBookFromHistory.visibility = View.GONE
+            binding.tvBasedOnHistory.visibility = View.GONE
+        }
+        setupView()
+    }
+
+    private fun setupView() {
+        val listBookFromHistory = viewModel.getListBookFromHistory()
+
+        if (listBookFromHistory.isNotEmpty()) {
+            val layoutManager2 = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.rvBook2.layoutManager = layoutManager2
+        } else {
+            val layoutManager2 = GridLayoutManager(requireContext(), 2, GridLayoutManager.HORIZONTAL, false)
+            binding.rvBook2.layoutManager = layoutManager2
+        }
     }
 
     private fun obtainViewModel(fragment: Fragment): HomeViewModel {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomAlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:background">?attr/secondarySectionBackground</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/CustomDialogButtonPositive</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/CustomDialogButtonNegative</item>
+    </style>
+
+    <style name="CustomDialogButtonPositive" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">?attr/titleColor</item>
+    </style>
+
+    <style name="CustomDialogButtonNegative" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">?attr/titleColor</item>
+    </style>
+
+
+</resources>

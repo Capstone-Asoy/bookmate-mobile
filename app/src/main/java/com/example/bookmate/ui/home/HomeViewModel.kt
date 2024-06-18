@@ -30,6 +30,13 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
     private val _listBuku = MutableLiveData<List<BookItem>>()
     val listBuku: LiveData<List<BookItem>> = _listBuku
 
+    private val _listBuku2 = MutableLiveData<List<BookItem>>()
+    val listBuku2: LiveData<List<BookItem>> = _listBuku2
+
+    private val _listBukuFromHistory =
+        MutableLiveData<List<BookItem>>().apply { value = emptyList() }
+    val listBukuFromHistory: LiveData<List<BookItem>> = _listBukuFromHistory
+
     fun getData() {
         _isLoading.value = true
 
@@ -42,7 +49,18 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        _listBuku.value = responseBody.data
+                        _listBuku.value = responseBody.recommendation.subList(
+                            0,
+                            responseBody.recommendation.size / 2
+                        )
+                        _listBuku2.value = responseBody.recommendation.subList(
+                            responseBody.recommendation.size / 2 + 1,
+                            responseBody.recommendation.size - 1
+                        )
+
+                        responseBody.basedOnHistory?.let {
+                            _listBukuFromHistory.value = responseBody.basedOnHistory
+                        }
 
                         _errorMessage.value = ""
                         _isErrorGetData.value = false
@@ -110,6 +128,10 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun getErrorMessage(): String {
         return _errorMessage.value ?: "Unknown error"
+    }
+
+    fun getListBookFromHistory(): List<BookItem> {
+        return _listBukuFromHistory.value ?: emptyList()
     }
 
     companion object {

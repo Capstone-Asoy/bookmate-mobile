@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -137,8 +138,10 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun getTextColor(bool: Boolean): Int {
-        val colorResId = if (bool) R.color.orange_400 else R.color.red_600
-        return ContextCompat.getColor(this, colorResId)
+        val colorResId = if (bool) R.attr.validIconColor else R.attr.invalidIconColor
+        val typedValue = TypedValue()
+        theme.resolveAttribute(colorResId, typedValue, true)
+        return typedValue.data
     }
 
     private fun showToast(msg: String) {

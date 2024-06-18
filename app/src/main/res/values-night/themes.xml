@@ -3,8 +3,8 @@
     <style name="Theme.BookMate" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/gunmetal</item>
-        <item name="colorPrimaryVariant">@color/black</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/slate_700</item>
+        <item name="colorOnPrimary">@color/gray_200</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
@@ -12,8 +12,33 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
 
-
         <!-- Customize your theme here. -->
-        <item name="bottomNavBackgroundColor">@color/black</item>
+        <item name="bottomNavBackgroundColor">@color/dark_section</item>
+
+        <!--        Welcome-->
+        <item name="welcomeBg">@drawable/welcome_bg_dark</item>
+        <item name="dotActive">@color/orange_200</item>
+
+        <!--        Register-->
+        <item name="titleColor">@color/gray_100</item>
+        <item name="subtitleColor">@color/gray_200</item>
+        <item name="primaryLinkColor">@color/white</item>
+
+        <item name="fieldBackground">@color/dark_surface</item>
+        <item name="fieldHintColor">@color/gray_200</item>
+        <item name="invalidIconColor">@color/red_400</item>
+        <item name="validIconColor">@color/orange_300</item>
+
+        <item name="fragmentBackground">@color/dark_surface</item>
+        <item name="tabActiveTextColor">@color/white</item>
+        <item name="tabNonActiveTextColor">@color/gray_300</item>
+
+        <item name="sectionBackground">@color/dark_section</item>
+        <item name="contentBackground">@color/dark_surface</item>
+        <item name="secondarySectionBackground">@color/dark_section</item>
+        <item name="sectionStroke">@color/dark_surface</item>
+
+        <item name="activeIconNav">@color/white</item>
+        <item name="genreBackground">@color/dark_section</item>
     </style>
 </resources>

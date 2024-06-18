@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/fragmentBackground"
     tools:context=".ui.preference.PreferenceActivity">
 
     <TextView
@@ -14,7 +15,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="@string/preference_title"
-        android:textColor="@color/gunmetal_400"
+        android:textColor="?attr/titleColor"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +28,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/preference_subtitle"
         android:textSize="16sp"
+        android:textColor="?attr/subtitleColor"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/tv_title"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />

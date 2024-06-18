@@ -11,6 +11,9 @@
     <color name="transparent">#000000</color>
     <color name="overlay_black">#80000000</color>
 
+    <color name="dark_surface">#1E1828</color>
+    <color name="dark_section">#130B1C</color>
+
     <!--    library-->
     <color name="slate_50">#F8FAFC</color>
     <color name="slate_100">#F1F5F9</color>

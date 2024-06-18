@@ -4,8 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class RecommendationResponse(
 
-	@field:SerializedName("data")
-	val data: List<BookItem>,
+	@field:SerializedName("rekomendasi")
+	val recommendation: List<BookItem>,
+
+	@field:SerializedName("dariHistory")
+	val basedOnHistory: List<BookItem>?,
 
 	@field:SerializedName("message")
 	val message: String,

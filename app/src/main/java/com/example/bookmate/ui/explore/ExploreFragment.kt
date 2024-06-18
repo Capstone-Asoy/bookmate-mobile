@@ -125,12 +125,15 @@ class ExploreFragment : Fragment() {
                 }
             })
             binding.rvBook.adapter = adapter
+        } else {
+            binding.tvNoRelevantData.visibility = View.VISIBLE
         }
     }
 
     private fun showTabs(isShowTab: Boolean) {
         if (isShowTab) {
             binding.rvBook.visibility = View.GONE
+            binding.tvNoRelevantData.visibility = View.GONE
             binding.viewPager.visibility = View.VISIBLE
             binding.tabs.visibility = View.VISIBLE
         } else {

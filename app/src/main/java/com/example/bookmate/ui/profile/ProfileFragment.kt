@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.bookmate.R
@@ -83,7 +84,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showLogoutDialog() {
-        AlertDialog.Builder(requireActivity()).apply {
+        AlertDialog.Builder(ContextThemeWrapper(requireActivity(), R.style.CustomAlertDialog)).apply {
             setTitle(R.string.log_out)
             setMessage(R.string.logout_msg)
             setNegativeButton(R.string.cancel) { dialog, _ ->

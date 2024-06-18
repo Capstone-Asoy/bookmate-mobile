@@ -1,4 +1,4 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/orange_200" />
+    <solid android:color="?attr/sectionBackground" />
     <corners android:bottomLeftRadius="32dp" android:bottomRightRadius="32dp"/>
 </shape>

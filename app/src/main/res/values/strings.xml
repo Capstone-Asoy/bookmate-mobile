@@ -44,9 +44,12 @@
     <string name="login_success">Enjoy your reads!</string>
 
     <!--    Home-->
-    <string name="for_you">For you</string>
+    <string name="for_you">Recommended for you</string>
+    <string name="for_you2">Your tailored picks</string>
     <string name="no_relevant">No relevant books</string>
     <string name="searchbar_hint">Search title or author..</string>
+    <string name="based_on_history">Based on your history</string>
+    <string name="based_on_bookmarks">Suggestions from bookmarks</string>
 
     <!--    Genre Preference-->
     <string name="genre">Genre</string>
