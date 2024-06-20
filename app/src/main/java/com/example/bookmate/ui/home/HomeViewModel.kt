@@ -37,6 +37,10 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
         MutableLiveData<List<BookItem>>().apply { value = emptyList() }
     val listBukuFromHistory: LiveData<List<BookItem>> = _listBukuFromHistory
 
+    private val _listBukuFromBookmark =
+        MutableLiveData<List<BookItem>>().apply { value = emptyList() }
+    val listBukuFromBookmark: LiveData<List<BookItem>> = _listBukuFromBookmark
+
     fun getData() {
         _isLoading.value = true
 
@@ -60,6 +64,9 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
 
                         responseBody.basedOnHistory?.let {
                             _listBukuFromHistory.value = responseBody.basedOnHistory
+                        }
+                        responseBody.bookmark?.let {
+                            _listBukuFromBookmark.value = responseBody.bookmark
                         }
 
                         _errorMessage.value = ""
@@ -132,6 +139,10 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun getListBookFromHistory(): List<BookItem> {
         return _listBukuFromHistory.value ?: emptyList()
+    }
+
+    fun getListBookFromBookmark(): List<BookItem> {
+        return _listBukuFromBookmark.value ?: emptyList()
     }
 
     companion object {

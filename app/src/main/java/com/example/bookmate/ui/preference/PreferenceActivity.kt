@@ -58,6 +58,7 @@ class PreferenceActivity : AppCompatActivity() {
                     viewHolder.setCheckboxEnabled(it.size < 5)
                 }
             }
+            (binding.rvGenre.adapter as? GenreAdapter)?.setSelectedGenres(it)
         }
         viewModel.isErrorSubmitData.observe(this) {
             if (it) {
