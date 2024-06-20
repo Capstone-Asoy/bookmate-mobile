@@ -1,5 +1,7 @@
 package com.example.bookmate.ui.preference
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,6 +11,13 @@ import com.example.bookmate.databinding.ItemGenreBinding
 
 class GenreAdapter: ListAdapter<String, GenreAdapter.ViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemClickCallback: OnItemClickCallback
+    private var selectedGenres: List<String> = emptyList()
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setSelectedGenres(genres: List<String>) {
+        selectedGenres = genres
+        notifyDataSetChanged()
+    }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
@@ -21,13 +30,16 @@ class GenreAdapter: ListAdapter<String, GenreAdapter.ViewHolder>(DIFF_CALLBACK) 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val genre = getItem(position)
-        holder.bind(genre)
+        val isChecked = selectedGenres.contains(genre)
+
+        holder.bind(genre, isChecked)
     }
 
     inner class ViewHolder(private val binding: ItemGenreBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(genre: String) {
+        fun bind(genre: String, isChecked: Boolean) {
             binding.checkbox.text = genre
+            binding.checkbox.isChecked = isChecked
             binding.checkbox.setOnClickListener {
                 onItemClickCallback.onItemClicked(genre)
             }

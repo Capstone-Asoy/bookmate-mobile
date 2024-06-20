@@ -10,6 +10,9 @@ data class RecommendationResponse(
 	@field:SerializedName("dariHistory")
 	val basedOnHistory: List<BookItem>?,
 
+	@field:SerializedName("bookmark")
+	val bookmark: List<BookItem>?,
+
 	@field:SerializedName("message")
 	val message: String,
 

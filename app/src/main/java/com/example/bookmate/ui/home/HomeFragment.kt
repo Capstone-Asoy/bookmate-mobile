@@ -79,6 +79,9 @@ class HomeFragment : Fragment() {
         viewModel.listBukuFromHistory.observe(viewLifecycleOwner) {
             showBookDataFromHistory(it)
         }
+        viewModel.listBukuFromBookmark.observe(viewLifecycleOwner) {
+            showBookDataFromBookmark(it)
+        }
 
         viewModel.isErrorGetData.observe(viewLifecycleOwner) {
             if (it) {
@@ -152,14 +155,48 @@ class HomeFragment : Fragment() {
         setupView()
     }
 
+    private fun showBookDataFromBookmark(listBuku: List<BookItem>) {
+        if (listBuku.isNotEmpty()) {
+            binding.rvBookFromBookmark.visibility = View.VISIBLE
+            binding.tvBasedOnBookmark.visibility = View.VISIBLE
+
+            val adapter = BookAdapter()
+            adapter.submitList(listBuku)
+            adapter.setOnItemClickCallback(object : BookAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: BookItem) {
+                    val intent = Intent(activity, BookDetailActivity::class.java)
+                    intent.putExtra(BookDetailActivity.EXTRA_ID, data.booksId)
+                    startActivity(intent)
+                }
+            })
+            binding.rvBookFromBookmark.adapter = adapter
+
+        } else {
+            binding.rvBookFromBookmark.visibility = View.GONE
+            binding.tvBasedOnBookmark.visibility = View.GONE
+        }
+        setupView()
+    }
+
     private fun setupView() {
         val listBookFromHistory = viewModel.getListBookFromHistory()
+        val listBookFromBookmark = viewModel.getListBookFromBookmark()
 
-        if (listBookFromHistory.isNotEmpty()) {
+        if (listBookFromHistory.isNotEmpty() && listBookFromBookmark.isNotEmpty()) {
+            val layoutManager1 =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.rvBook.layoutManager = layoutManager1
+            val layoutManager2 =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.rvBook2.layoutManager = layoutManager2
+        } else if (listBookFromHistory.isNotEmpty() || listBookFromBookmark.isNotEmpty()) {
             val layoutManager2 =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvBook2.layoutManager = layoutManager2
         } else {
+            val layoutManager1 =
+                GridLayoutManager(requireContext(), 2, GridLayoutManager.HORIZONTAL, false)
+            binding.rvBook.layoutManager = layoutManager1
             val layoutManager2 =
                 GridLayoutManager(requireContext(), 2, GridLayoutManager.HORIZONTAL, false)
             binding.rvBook2.layoutManager = layoutManager2
